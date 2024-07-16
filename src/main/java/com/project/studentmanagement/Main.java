@@ -6,6 +6,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import javafx.scene.control.Alert;
 import javafx.stage.StageStyle;
@@ -27,6 +28,12 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) {
         this.primaryStage = primaryStage;
+
+        primaryStage.initStyle(StageStyle.UNDECORATED);
+
+//        LoginController controller = fxmlLoader.getController();
+//        controller.setStage(primaryStage);
+
         loadUserData();
         loadCredentials();
         setupDefaultAdmin(); // Ensure default admin is added if not already present
@@ -102,8 +109,12 @@ public class Main extends Application {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("LoginForm1.fxml"));
             Parent root = loader.load();
 
+//            LoginController controller = loader.getController();
+//            controller.setStage(primaryStage);
+
             LoginController controller = loader.getController();
             controller.setMainApp(this);
+            controller.setStage(primaryStage);
 
             Scene scene = new Scene(root);
             primaryStage.setScene(scene);
