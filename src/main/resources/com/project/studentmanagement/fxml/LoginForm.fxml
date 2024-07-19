@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="409.0" prefWidth="591.0" stylesheets="@css/LoginForm1.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.project.studentmanagement.controllers.LoginController">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="409.0" prefWidth="591.0" stylesheets="@../css/LoginForm1.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.project.studentmanagement.controllers.LoginController">
     <AnchorPane fx:id="main_form" prefHeight="200.0" prefWidth="200.0">
         <AnchorPane layoutY="40.0" prefHeight="370.0" prefWidth="298.0" styleClass="left-form" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="40.0">
             <!-- Uncomment the following line to include the FontAwesomeIcon -->
@@ -26,7 +26,7 @@
             </Label>
          <ImageView fitHeight="65.0" fitWidth="103.0" layoutX="111.0" layoutY="110.0" pickOnBounds="true" preserveRatio="true">
             <image>
-               <Image url="@logo.png" />
+               <Image url="@../images/logo.png" />
             </image>
          </ImageView>
         </AnchorPane>
@@ -42,11 +42,11 @@
             <PasswordField fx:id="passwordField" layoutX="39.0" layoutY="185.0" prefHeight="30.0" prefWidth="220.0" promptText="Password" styleClass="textfield" />
             <Button fx:id="loginBtn" layoutX="39.0" layoutY="237.0" mnemonicParsing="false" onAction="#handleLogin" prefHeight="40.0" prefWidth="220.0" styleClass="login-btn" text="Login" />
         </AnchorPane>
-      <HBox alignment="CENTER_LEFT" onMouseDragged="#handleTitleBarDragged" onMousePressed="#handleTitleBarPressed" layoutY="-1.0" prefHeight="40.0" prefWidth="593.0">
+      <HBox alignment="CENTER_LEFT" layoutY="-1.0" onMouseDragged="#handleTitleBarDragged" onMousePressed="#handleTitleBarPressed" prefHeight="40.0" prefWidth="593.0">
          <children>
             <ImageView fitHeight="34.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@logo.png" />
+                  <Image url="@../images/logo.png" />
                </image>
                <HBox.margin>
                   <Insets left="15.0" />
@@ -60,15 +60,29 @@
                   <Font name="System Bold" size="15.0" />
                </font>
             </Label>
-            <Button onAction="#handleMinimizeButtonAction" mnemonicParsing="false" prefHeight="24.0" prefWidth="65.0" text="minimize">
+            <Button fx:id="minimize" mnemonicParsing="false" onAction="#handleMinimizeButtonAction" prefHeight="15.0" prefWidth="15.0">
                <HBox.margin>
-                  <Insets left="195.0" />
+                  <Insets left="235.0" />
                </HBox.margin>
+               <graphic>
+                  <ImageView fitHeight="17.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/minimize.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
             </Button>
-            <Button layoutX="526.0" layoutY="17.0" mnemonicParsing="false" onAction="#handleCloseButtonAction" prefHeight="24.0" prefWidth="45.0" text="close">
+            <Button fx:id="close" layoutX="526.0" layoutY="17.0" mnemonicParsing="false" onAction="#handleCloseButtonAction" prefHeight="15.0" prefWidth="15.0">
                <HBox.margin>
                   <Insets left="10.0" />
                </HBox.margin>
+               <graphic>
+                  <ImageView fitHeight="17.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                         <Image url="@../images/close.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
             </Button>
          </children>
       </HBox>

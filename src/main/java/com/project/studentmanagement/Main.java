@@ -6,11 +6,9 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import javafx.scene.control.Alert;
 import javafx.stage.StageStyle;
-
 import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -106,7 +104,7 @@ public class Main extends Application {
 
     public void showLoginScreen() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("LoginForm1.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("fxml/LoginForm.fxml"));
             Parent root = loader.load();
 
 //            LoginController controller = loader.getController();
@@ -115,6 +113,8 @@ public class Main extends Application {
             LoginController controller = loader.getController();
             controller.setMainApp(this);
             controller.setStage(primaryStage);
+//            primaryStage.setFullScreen(true);
+//            primaryStage.centerOnScreen();
 
             Scene scene = new Scene(root);
             primaryStage.setScene(scene);
@@ -125,6 +125,7 @@ public class Main extends Application {
         }
     }
 
+//    ---------------------------------------------------------------------------------
     public void showDashboard(User user) {
         try {
             FXMLLoader loader = new FXMLLoader();
@@ -137,9 +138,10 @@ public class Main extends Application {
                     AdminDashboardController adminController = loader.getController();
                     adminController.setMainApp(this);
                     adminController.setLoggedInUser(user);
+                    adminController.setStage(primaryStage);
                     break;
                 case "Teacher":
-                    TeacherDashboardController  teacherController = loader.getController();
+                    TeacherDashboardController teacherController = loader.getController();
                     teacherController.setMainApp(this);
                     teacherController.setLoggedInUser(user);
                     break;
@@ -148,7 +150,7 @@ public class Main extends Application {
                     studentController.setMainApp(this);
                     studentController.setLoggedInUser(user);
                     break;
-                    case "Admission Officer":
+                case "Admission Officer":
                     AdmissionOfficerDashboardController admissionOfficerController = loader.getController();
                     admissionOfficerController.setMainApp(this);
                     admissionOfficerController.setLoggedInUser(user);
@@ -166,29 +168,33 @@ public class Main extends Application {
             Scene scene = new Scene(root);
             primaryStage.setScene(scene);
             primaryStage.setTitle(user.getRole() + " Dashboard");
+            primaryStage.centerOnScreen(); // Center the window on the screen
             primaryStage.show();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
+
     private String getDashboardFXML(String role) {
         switch (role) {
             case "Admin":
-                return "AdminDashboard.fxml";
+                return "fxml/AdminDashboard1.fxml";
             case "Teacher":
-                return "TeacherDashboard.fxml";
+                return "fxml/TeacherDashboard.fxml";
            case "Student":
-                return "StudentDashboard.fxml";
+                return "fxml/StudentDashboard.fxml";
             case "Admission Officer":
-                return "AdmissionOfficerDashboard.fxml";
+                return "fxml/AdmissionOfficerDashboard.fxml";
             case "Librarian":
-                return "LibrarianDashboard.fxml";
+                return "fxml/LibrarianDashboard.fxml";
             // Add cases for other roles as needed
             default:
-                return "LoginForm.fxml"; // Default dashboard for unknown roles
+                return "fxml/LoginForm5.fxml"; // Default dashboard for unknown roles
         }
     }
+
+//    ------------------------------------------------------------------------------
 
     public User validateLogin(String username, String password) {
         // Check in admin users (user.txt)

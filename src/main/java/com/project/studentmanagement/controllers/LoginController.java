@@ -24,7 +24,7 @@ public class LoginController {
         this.mainApp = mainApp;
     }
 
-//    ---------------------------
+//    --------------------------------------------------------------------
 private Stage stage;
     private double xOffset = 0;
     private double yOffset = 0;
@@ -60,7 +60,7 @@ private Stage stage;
             stage.setY(event.getScreenY() - yOffset);
         }
     }
-//    ---------------------------
+//    --------------------------------------------------------------------
     @FXML
     private void handleLogin() {
         String username = usernameField.getText();

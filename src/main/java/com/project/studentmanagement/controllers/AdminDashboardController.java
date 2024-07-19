@@ -3,92 +3,124 @@ package com.project.studentmanagement.controllers;
 import com.project.studentmanagement.Main;
 import com.project.studentmanagement.model.User;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
-
-import java.util.List;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
+import javafx.stage.Stage;
 
 public class AdminDashboardController {
+    @FXML
+    private AnchorPane mainDashboard;
+    @FXML
+    private AnchorPane studentDashboard;
+    @FXML
+    private AnchorPane teacherDashboard;
+    @FXML
+    private AnchorPane courseDashboard;
+    @FXML
+    private AnchorPane settingsDashboard;
+
+    private Main mainApp;
+
+    //    ----------------------------------------
+    private Stage stage;
+    private double xOffset = 0;
+    private double yOffset = 0;
+
+    public void setStage(Stage stage) {
+        this.stage = stage;
+    }
 
     @FXML
-    private Label welcomeLabel;
+    protected void handleMinimizeButtonAction() {
+        if (stage != null) {
+            stage.setIconified(true);
+        }
+    }
 
     @FXML
-    private Label roleLabel;
+    protected void handleCloseButtonAction() {
+        if (stage != null) {
+            stage.close();
+        }
+    }
 
     @FXML
-    private TextField newUserField;
+    protected void handleTitleBarPressed(MouseEvent event) {
+        xOffset = event.getSceneX();
+        yOffset = event.getSceneY();
+    }
 
     @FXML
-    private PasswordField newPasswordField;
-
-    @FXML
-    private TextField newRoleField;
-
-    @FXML
-    private Button addUserButton;
-
-    private Main mainApp; // Ensure this is properly initialized
-
-    private List<User> users; // Maintain a list of users
+    protected void handleTitleBarDragged(MouseEvent event) {
+        if (stage != null) {
+            stage.setX(event.getScreenX() - xOffset);
+            stage.setY(event.getScreenY() - yOffset);
+        }
+    }
+//    -----------------------------------------------------------------
 
     public void setMainApp(Main mainApp) {
         this.mainApp = mainApp;
     }
-
-    public void setLoggedInUser(User user) {
-        welcomeLabel.setText("Welcome, " + user.getUsername() + "!");
-        roleLabel.setText("Role: " + user.getRole());
-
-        // Load existing users from file or initialize a new list
-        this.users = mainApp.getUsers();
-        if (user.getRole().equals("Admin")) {
-            newUserField.setVisible(true);
-            newPasswordField.setVisible(true);
-            newRoleField.setVisible(true);
-            addUserButton.setVisible(true);
-        }
+    @FXML
+    private void showMainDashboard() {
+        mainDashboard.setVisible(true);
+        studentDashboard.setVisible(false);
+        teacherDashboard.setVisible(false);
+        courseDashboard.setVisible(false);
+        settingsDashboard.setVisible(false);
     }
 
     @FXML
-    private void addUser() {
-        String newUsername = newUserField.getText();
-        String newPassword = newPasswordField.getText();
-        String newRole = newRoleField.getText();
+    private void showStudentDashboard() {
+        mainDashboard.setVisible(false);
+        studentDashboard.setVisible(true);
+        teacherDashboard.setVisible(false);
+        courseDashboard.setVisible(false);
+        settingsDashboard.setVisible(false);
+    }
 
-        if (newUsername.isEmpty() || newPassword.isEmpty() || newRole.isEmpty()) {
-            mainApp.showAlert("Error", "All fields are required to add a new user.", Alert.AlertType.ERROR);
-            return;
-        }
+    @FXML
+    private void showTeacherDashboard() {
+        mainDashboard.setVisible(false);
+        studentDashboard.setVisible(false);
+        teacherDashboard.setVisible(true);
+        courseDashboard.setVisible(false);
+        settingsDashboard.setVisible(false);
+    }
 
-        // Check if user with the same username already exists
-        for (User user : users) {
-            if (user.getUsername().equals(newUsername)) {
-                mainApp.showAlert("Error", "User with this username already exists.", Alert.AlertType.ERROR);
-                return;
-            }
-        }
+    @FXML
+    private void showCourseDashboard() {
+        mainDashboard.setVisible(false);
+        studentDashboard.setVisible(false);
+        teacherDashboard.setVisible(false);
+        courseDashboard.setVisible(true);
+        settingsDashboard.setVisible(false);
+    }
 
-        // Create new user and add to list
-        User newUser = new User(newUsername, newPassword, newRole);
-        mainApp.addUserToFile(newUser); // Add user to credentials.txt
-
-        mainApp.showAlert("Success", "User added successfully!", Alert.AlertType.INFORMATION);
-
-        newUserField.clear();
-        newPasswordField.clear();
-        newRoleField.clear();
+    @FXML
+    private void showSettingsDashboard() {
+        mainDashboard.setVisible(false);
+        studentDashboard.setVisible(false);
+        teacherDashboard.setVisible(false);
+        courseDashboard.setVisible(false);
+        settingsDashboard.setVisible(true);
     }
 
     @FXML
     private void handleLogout() {
-        if (mainApp != null) {
-            mainApp.showLoginScreen();
-        } else {
-            System.out.println("MainApp is null, cannot logout.");
-        }
+        mainApp.showLoginScreen();
     }
+
+    private User loggedInUser;
+
+    public void setLoggedInUser(User user) {
+        this.loggedInUser = user;
+//        welcomeLabel.setText("Welcome, " + user.getUsername() + "!");
+//        roleLabel.setText("Role: " + user.getRole());
+    }
+
 }

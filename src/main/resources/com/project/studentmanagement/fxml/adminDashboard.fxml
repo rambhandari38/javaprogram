@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane prefHeight="815.0" prefWidth="1250.0" styleClass="border-pane" stylesheets="@../css/adminDashboard.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.project.studentmanagement.controllers.AdminDashboardController">
+
+    <!-- Sidebar -->
+    <left>
+        <!-- Insert your sidebar content here -->
+        <!-- Example: Sidebar menu -->
+        <VBox prefHeight="719.0" prefWidth="183.0" styleClass="sidebar">
+            <Button onAction="#showMainDashboard" prefHeight="35.0" prefWidth="150.0" styleClass="button-sidebar" stylesheets="@../css/adminDashboard.css" text="Dashboard">
+                <VBox.margin>
+                    <Insets left="5.0" top="15.0" />
+                </VBox.margin></Button>
+            <Button onAction="#showStudentDashboard" prefHeight="35.0" prefWidth="150.0" styleClass="button-sidebar" stylesheets="@../css/adminDashboard.css" text="Student Management">
+                <VBox.margin>
+                    <Insets left="5.0" top="15.0" />
+                </VBox.margin></Button>
+            <Button prefHeight="35.0" prefWidth="150.0" styleClass="button-sidebar" stylesheets="@../css/adminDashboard.css" text="Teacher Management">
+                <VBox.margin>
+                    <Insets left="5.0" top="15.0" />
+                </VBox.margin></Button>
+            <Button prefHeight="35.0" prefWidth="150.0" styleClass="button-sidebar" stylesheets="@../css/adminDashboard.css" text="Course Management">
+                <VBox.margin>
+                    <Insets left="5.0" top="15.0" />
+                </VBox.margin></Button>
+            <Button prefHeight="35.0" prefWidth="150.0" styleClass="button-sidebar" stylesheets="@../css/adminDashboard.css" text="Settings">
+                <VBox.margin>
+                    <Insets left="5.0" top="15.0" />
+                </VBox.margin></Button>
+            <!-- Add more sidebar options as needed -->
+        </VBox>
+    </left>
+    <top>
+        <HBox onMouseDragged="#handleTitleBarDragged" onMousePressed="#handleTitleBarPressed" prefHeight="78.0" prefWidth="1250.0" BorderPane.alignment="CENTER">
+            <Pane prefHeight="155.0" prefWidth="1251.0">
+                <HBox layoutX="-6.0" layoutY="1.0" prefHeight="37.0" prefWidth="1256.0">
+                    <HBox alignment="CENTER_LEFT" prefHeight="34.0" prefWidth="1030.0">
+                        <ImageView fitHeight="26.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                            <HBox.margin>
+                                <Insets left="35.0" />
+                            </HBox.margin>
+                            <Image url="@../images/logo.png" />
+                        </ImageView>
+                        <Label prefHeight="27.0" prefWidth="202.0" text="Student Mangement System">
+                            <HBox.margin>
+                                <Insets left="15.0" />
+                            </HBox.margin>
+                            <font>
+                                <Font name="System Bold" size="15.0" />
+                            </font>
+                        </Label>
+                    </HBox>
+                    <HBox alignment="CENTER_RIGHT" layoutX="10.0" layoutY="10.0" prefHeight="34.0" prefWidth="854.0">
+                        <HBox.margin>
+                            <Insets />
+                        </HBox.margin>
+                        <Button fx:id="minimize" mnemonicParsing="false" prefHeight="23.0" prefWidth="34.0" onAction="#handleMinimizeButtonAction">
+                            <HBox.margin>
+                                <Insets right="15.0" />
+                            </HBox.margin>
+                            <graphic>
+                                <ImageView fitHeight="16.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../images/minimize.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </Button>
+                        <Button fx:id="close" mnemonicParsing="false" prefHeight="23.0" prefWidth="29.0" onAction="#handleCloseButtonAction">
+                            <HBox.margin>
+                                <Insets right="15.0" />
+                            </HBox.margin>
+                            <graphic>
+                                <ImageView fitHeight="14.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                                    <Image url="@../images/close.png" />
+                                </ImageView>
+                            </graphic>
+                        </Button>
+                    </HBox>
+                </HBox>
+                <HBox id="header-buttom" layoutX="-3.0" layoutY="37.0" prefHeight="42.0" prefWidth="1256.0" stylesheets="@../css/adminDashboard.css">
+                    <HBox alignment="CENTER" prefHeight="34.0" prefWidth="638.0">
+                        <Label id="header" prefHeight="30.0" prefWidth="154.0" text="Admin Dashboard" />
+                    </HBox>
+                    <HBox alignment="CENTER_RIGHT" layoutX="10.0" layoutY="10.0" prefHeight="39.0" prefWidth="614.0">
+                        <Button id="logoutbtn" mnemonicParsing="false" prefHeight="28.0" prefWidth="57.0" onAction="#handleLogout" text="Logout">
+                            <HBox.margin>
+                                <Insets right="15.0" />
+                            </HBox.margin>
+                        </Button>
+                    </HBox>
+                </HBox>
+            </Pane>
+        </HBox>
+    </top>
+    <center>
+        <StackPane prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <AnchorPane fx:id="mainDashboard" prefHeight="200.0" prefWidth="200.0">
+                <Label prefHeight="54.0" prefWidth="118.0" text="Dashboard" />
+            </AnchorPane>
+            <AnchorPane fx:id="studentDashboard" prefHeight="200.0" prefWidth="200.0" visible="false">
+                <Label layoutX="55.0" layoutY="57.0" prefHeight="57.0" prefWidth="115.0" text="student" />
+            </AnchorPane>
+        </StackPane>
+    </center>
+
+</BorderPane>

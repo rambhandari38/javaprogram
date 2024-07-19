@@ -47,3 +47,17 @@
 .login-btn:hover {
     -fx-background-color: linear-gradient(to bottom, #277bd0, #1b6fa4);
 }
+
+#minimize, #close {
+    -fx-border-color: black; /* Color of the border */
+    -fx-border-width: 1px;   /* Thickness of the border */
+    -fx-background-color: transparent; /* Transparent background */
+    -fx-background-insets: 0; /* No padding around the content */
+    -fx-background-radius: 0; /* No rounded corners */
+    -fx-text-fill: white;
+}
+
+#minimize:hover, #close:hover {
+    -fx-background-color: red; /* Darker shade of red on hover */
+    -fx-text-fill: white;
+}
