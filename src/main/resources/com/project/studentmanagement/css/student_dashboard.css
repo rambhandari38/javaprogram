@@ -21,3 +21,23 @@
 .button:pressed {
     -fx-background-color: #3e8e41;
 }
+
+
+.search-fieldbyID {
+/*    -fx-background-color: white;*/
+    -fx-background-radius: 10;   /* Adjust the radius as needed */
+    -fx-border-color: black;     /* Optional: Border color */
+    -fx-border-radius: 10;       /* Match the background radius */
+    -fx-border-width: 1;         /* Adjust the border width as needed */
+    -fx-padding: 5;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 10, 0.5, 0, 0);  /* Shadow effect */
+}
+
+.searcharea-fieldbyID {
+    -fx-background-radius: 10;
+    -fx-border-color: black;
+    -fx-border-radius: 10;
+    -fx-border-width: 1;
+    -fx-padding: 1;
+    fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 10, 0.5, 0, 0);
+}
