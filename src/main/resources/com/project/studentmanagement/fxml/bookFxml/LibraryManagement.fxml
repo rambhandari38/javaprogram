@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane fx:id="contentPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="815.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.project.studentmanagement.controllers.bookController.LibraryRecordsController">
+    <top>
+        <HBox prefHeight="85.0" prefWidth="1250.0" BorderPane.alignment="CENTER">
+         <children>
+            <AnchorPane prefHeight="96.0" prefWidth="1260.0">
+               <children>
+                  <HBox alignment="CENTER_LEFT" prefHeight="41.0" prefWidth="1250.0">
+                     <children>
+                              <ImageView fitHeight="32.0" fitWidth="57.0" pickOnBounds="true" preserveRatio="true">
+                                  <image>
+<!--                                      <Image url="@../images/minimize.png" />-->
+                                  </image>
+                           <HBox.margin>
+                              <Insets left="15.0" />
+                           </HBox.margin>
+                              </ImageView>
+                        <Label text="Student Management System">
+                           <HBox.margin>
+                              <Insets left="15.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font name="System Bold" size="19.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox layoutY="43.0" prefHeight="41.0" prefWidth="1250.0" style="-fx-background-color: #444444;">
+                     <children>
+                        <HBox alignment="CENTER_LEFT" prefHeight="26.0" prefWidth="601.0">
+                           <children>
+                                    <Label prefHeight="26.0" prefWidth="173.0" text="Librarian Dashboard" textFill="WHITE">
+                                        <font>
+                                            <Font size="19.0" />
+                                        </font>
+                                 <HBox.margin>
+                                    <Insets left="15.0" />
+                                 </HBox.margin>
+                                    </Label>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_RIGHT" layoutX="10.0" layoutY="10.0" prefHeight="39.0" prefWidth="657.0">
+                           <children>
+                                  <Button mnemonicParsing="false" prefHeight="22.0" prefWidth="77.0" style="-fx-padding: 8; -fx-background-color: red; -fx-text-fill: black; -fx-background-radius: 15;" text="Logout">
+                                      <font>
+                                          <Font name="System Bold" size="14.0" />
+                                      </font>
+                                      <HBox.margin>
+                                          <Insets right="15.0" />
+                                      </HBox.margin>
+                                  </Button>
+                           </children>
+                        </HBox>
+                     </children>
+                  </HBox>
+               </children>
+            </AnchorPane>
+         </children>
+        </HBox>
+    </top>
+    <left>
+        <VBox prefHeight="731.0" prefWidth="234.0" style="-fx-background-color: #444444;">
+            <children>
+                <Button mnemonicParsing="false" onAction="#overviewAction" prefHeight="41.0" prefWidth="182.0" style="-fx-background-color: black; -fx-text-fill: white;" text="Overview">
+                    <font>
+                        <Font size="18.0" />
+                    </font>
+               <VBox.margin>
+                  <Insets left="15.0" right="35.0" top="35.0" />
+               </VBox.margin>
+                </Button>
+                <Button mnemonicParsing="false" onAction="#bookMngmtAction" prefHeight="38.0" prefWidth="186.0" style="-fx-background-color: black; -fx-text-fill: white;" text="Book Management">
+                    <font>
+                        <Font size="18.0" />
+                    </font>
+               <VBox.margin>
+                  <Insets left="15.0" right="35.0" top="35.0" />
+               </VBox.margin>
+                </Button>
+                <Button mnemonicParsing="false" onAction="#libraryReviewAction" prefHeight="38.0" prefWidth="185.0" style="-fx-background-color: black; -fx-text-fill: white;" text="Library Records">
+                    <font>
+                        <Font size="18.0" />
+                    </font>
+               <VBox.margin>
+                  <Insets left="15.0" right="35.0" top="35.0" />
+               </VBox.margin>
+                </Button>
+            </children>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+        </VBox>
+    </left>
+   <center>
+       <VBox prefHeight="735.0" prefWidth="850.0">
+           <children>
+               <Label prefHeight="26.0" prefWidth="177.0" text="Library Records">
+                   <font>
+                       <Font name="System Bold" size="16.0" />
+                   </font>
+                   <VBox.margin>
+                       <Insets bottom="10.0" left="25.0" top="15.0" />
+                   </VBox.margin>
+               </Label>
+               <VBox prefHeight="685.0" prefWidth="1087.0" style="-fx-background-color: #d3d3d3;">
+                   <VBox.margin>
+                       <Insets left="20.0" right="20.0" />
+                   </VBox.margin>
+                   <children>
+                       <VBox prefHeight="669.0" prefWidth="1042.0" style="-fx-background-color: white;">
+                           <VBox.margin>
+                               <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                           </VBox.margin>
+                           <children>
+                               <VBox prefHeight="222.0" prefWidth="364.0" style="-fx-background-color: #d3d3d3;">
+                                   <VBox.margin>
+                                       <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                                   </VBox.margin>
+                                   <children>
+                                       <HBox prefHeight="129.0" prefWidth="534.0">
+                                           <children>
+                                               <VBox prefHeight="222.0" prefWidth="265.0">
+                                                   <children>
+                                                       <Label text="Borrow Book">
+                                                           <font>
+                                                               <Font name="System Bold" size="14.0" />
+                                                           </font>
+                                                           <VBox.margin>
+                                                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                           </VBox.margin>
+                                                       </Label>
+                                                       <Label prefHeight="18.0" prefWidth="62.0" text="Book Title:">
+                                                           <VBox.margin>
+                                                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                           </VBox.margin>
+                                                       </Label>
+                                                       <TextField fx:id="bookTitle">
+                                                           <VBox.margin>
+                                                               <Insets bottom="5.0" left="5.0" right="5.0" />
+                                                           </VBox.margin>
+                                                       </TextField>
+                                                       <Label prefHeight="18.0" prefWidth="94.0" text="Borrower Name:">
+                                                           <VBox.margin>
+                                                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                           </VBox.margin>
+                                                       </Label>
+                                                       <TextField fx:id="borrowerName">
+                                                           <VBox.margin>
+                                                               <Insets bottom="5.0" left="5.0" right="5.0" />
+                                                           </VBox.margin>
+                                                       </TextField>
+                                                       <Label prefHeight="18.0" prefWidth="78.0" text="Borrow Date:">
+                                                           <VBox.margin>
+                                                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                           </VBox.margin>
+                                                       </Label>
+                                                       <DatePicker fx:id="borrowedDate" layoutX="15.0" layoutY="227.0">
+                                                           <VBox.margin>
+                                                               <Insets bottom="5.0" left="5.0" right="5.0" />
+                                                           </VBox.margin>
+                                                       </DatePicker>
+                                                       <Label prefHeight="18.0" prefWidth="64.0" text="Due Date:">
+                                                           <VBox.margin>
+                                                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                           </VBox.margin>
+                                                       </Label>
+                                                       <DatePicker fx:id="dueDate">
+                                                           <VBox.margin>
+                                                               <Insets bottom="5.0" left="5.0" right="5.0" />
+                                                           </VBox.margin>
+                                                       </DatePicker>
+                                                       <Button mnemonicParsing="false" onAction="#borrowBookAction" style="-fx-background-color: #08962e; -fx-text-fill: white;" text="Borrow Book">
+                                                           <font>
+                                                               <Font size="14.0" />
+                                                           </font>
+                                                           <VBox.margin>
+                                                               <Insets bottom="5.0" left="10.0" right="5.0" top="15.0" />
+                                                           </VBox.margin>
+                                                       </Button>
+                                                   </children>
+                                                   <HBox.margin>
+                                                       <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                                                   </HBox.margin>
+                                               </VBox>
+                                               <VBox layoutX="10.0" layoutY="10.0" prefHeight="222.0" prefWidth="265.0">
+                                                   <children>
+                                                       <Label text="Return Book">
+                                                           <font>
+                                                               <Font name="System Bold" size="14.0" />
+                                                           </font>
+                                                           <VBox.margin>
+                                                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                           </VBox.margin>
+                                                       </Label>
+                                                       <Label prefHeight="18.0" prefWidth="62.0" text="Book Title:">
+                                                           <VBox.margin>
+                                                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                           </VBox.margin>
+                                                       </Label>
+                                                       <TextField fx:id="returnBookName">
+                                                           <VBox.margin>
+                                                               <Insets bottom="5.0" left="5.0" right="5.0" />
+                                                           </VBox.margin>
+                                                       </TextField>
+                                                       <Label prefHeight="18.0" prefWidth="92.0" text="Borrower Name:">
+                                                           <VBox.margin>
+                                                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                           </VBox.margin>
+                                                       </Label>
+                                                       <TextField fx:id="returnName">
+                                                           <VBox.margin>
+                                                               <Insets bottom="5.0" left="5.0" right="5.0" />
+                                                           </VBox.margin>
+                                                       </TextField>
+                                                       <Label prefHeight="18.0" text="Book Added:">
+                                                           <VBox.margin>
+                                                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                           </VBox.margin>
+                                                       </Label>
+                                                       <DatePicker fx:id="returnedDate">
+                                                           <VBox.margin>
+                                                               <Insets bottom="5.0" left="5.0" right="5.0" />
+                                                           </VBox.margin>
+                                                       </DatePicker>
+                                                       <Button mnemonicParsing="false" onAction="#returnBookAction" style="-fx-background-color: #08962e; -fx-text-fill: white;" text="Return Book">
+                                                           <font>
+                                                               <Font size="14.0" />
+                                                           </font>
+                                                           <VBox.margin>
+                                                               <Insets bottom="5.0" left="10.0" right="5.0" top="15.0" />
+                                                           </VBox.margin>
+                                                       </Button>
+                                                   </children>
+                                                   <HBox.margin>
+                                                       <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                                                   </HBox.margin>
+                                               </VBox>
+                                           </children>
+                                       </HBox>
+                                   </children>
+                               </VBox>
+                               <Label text="Books and Borrowers">
+                                   <font>
+                                       <Font name="System Bold" size="14.0" />
+                                   </font>
+                                   <VBox.margin>
+                                       <Insets left="15.0" right="5.0" top="5.0" />
+                                   </VBox.margin>
+                               </Label>
+                               <TableView fx:id="borrowTable" prefHeight="299.0" prefWidth="994.0">
+                                   <columns>
+                                       <TableColumn fx:id="borrowedBookTC" prefWidth="196.00004118680954" text="Book Title" />
+                                       <TableColumn fx:id="borrowerNameTC" minWidth="0.0" prefWidth="195.99998474121094" text="Borrower Name" />
+                                       <TableColumn fx:id="borrowedDateTC" minWidth="0.0" prefWidth="145.59994506835938" text="Borrow Date" />
+                                       <TableColumn fx:id="dueDateTC" minWidth="0.0" prefWidth="125.5999755859375" text="Due Date" />
+                                       <TableColumn fx:id="returnDateTC" minWidth="0.0" prefWidth="133.5999755859375" text="Return Date" />
+                                       <TableColumn fx:id="actionTC" minWidth="0.0" prefWidth="140.0" text="Action" />
+                                   </columns>
+                                   <VBox.margin>
+                                       <Insets bottom="15.0" left="15.0" right="5.0" top="5.0" />
+                                   </VBox.margin>
+                               </TableView>
+                           </children>
+                       </VBox>
+                   </children>
+               </VBox>
+           </children>
+       </VBox>
+   </center>
+</BorderPane>

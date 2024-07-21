@@ -1,0 +1,13 @@
+.crudButton {
+    -fx-background-color: #2584b9;
+    -fx-border-radius: 10;
+    -fx-border-width: 0;
+    -fx-background-radius: 10;
+    -fx-border-color: #3dbceae3;
+    -fx-text-fill: white;
+}
+
+.crudButton:hover {
+    -fx-background-color: #236082;
+    -fx-background-radius: 10;
+}

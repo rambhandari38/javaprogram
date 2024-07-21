@@ -1,6 +1,7 @@
 package com.project.studentmanagement;
 
 import com.project.studentmanagement.controllers.*;
+import com.project.studentmanagement.controllers.bookController.OverViewController;
 import com.project.studentmanagement.model.User;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -17,8 +18,8 @@ import java.util.Map;
 
 public class Main extends Application {
 
-    private static final String USER_DATA_FILE = "users.txt";
-    private static final String CREDENTIALS_FILE = "credentials.txt";
+    private static final String USER_DATA_FILE = "StudentManagementData/loginData/users.txt";
+    private static final String CREDENTIALS_FILE = "StudentManagementData/loginData/credentials.txt";
     private Stage primaryStage;
     private List<User> users = new ArrayList<>();
     private Map<String, String> credentials = new HashMap<>();
@@ -29,11 +30,8 @@ public class Main extends Application {
 
         primaryStage.initStyle(StageStyle.UNDECORATED);
 
-//        LoginController controller = fxmlLoader.getController();
-//        controller.setStage(primaryStage);
-
-        loadUserData();
         loadCredentials();
+        loadUserData();
         setupDefaultAdmin(); // Ensure default admin is added if not already present
         showLoginScreen();
     }
@@ -46,15 +44,19 @@ public class Main extends Application {
         File file = new File(USER_DATA_FILE);
         if (!file.exists()) {
             // If the file does not exist, create a default admin user and save it
-            users.add(new User("admin", "admin", "Admin"));
+            users.add(new User(1, "admin", "admin", "Admin")); // Set SN=1 for default admin
             saveUserData();
         } else {
-            try (BufferedReader reader = new BufferedReader(new FileReader(USER_DATA_FILE))) {
+            try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
                 String line;
                 while ((line = reader.readLine()) != null) {
                     String[] parts = line.split(",");
-                    if (parts.length == 3) {
-                        users.add(new User(parts[0], parts[1], parts[2]));
+                    if (parts.length == 4) {
+                        int sn = Integer.parseInt(parts[0]);
+                        String username = parts[1];
+                        String password = parts[2];
+                        String role = parts[3];
+                        users.add(new User(sn, username, password, role));
                     }
                 }
             } catch (IOException e) {
@@ -63,19 +65,25 @@ public class Main extends Application {
         }
     }
 
+
     private void loadCredentials() {
         try (BufferedReader reader = new BufferedReader(new FileReader(CREDENTIALS_FILE))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] parts = line.split(",");
-                if (parts.length == 3) {
-                    credentials.put(parts[0], parts[1] + "," + parts[2]); // Added for role handling
+                if (parts.length == 4) { // Ensure four parts
+                    int sn = Integer.parseInt(parts[0]);
+                    String username = parts[1];
+                    String password = parts[2];
+                    String role = parts[3];
+                    credentials.put(username, password + "," + role); // Handle role for login
                 }
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
 
     private void setupDefaultAdmin() {
         boolean adminExists = false;
@@ -86,15 +94,16 @@ public class Main extends Application {
             }
         }
         if (!adminExists) {
-            users.add(new User("admin", "admin", "Admin"));
+            users.add(new User(1, "admin", "admin", "Admin")); // Set SN=1
             saveUserData();
         }
     }
 
+
     private void saveUserData() {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(USER_DATA_FILE))) {
             for (User user : users) {
-                writer.write(user.getUsername() + "," + user.getPassword() + "," + user.getRole());
+                writer.write(user.toCSVFormat()); // Convert to CSV format including SN
                 writer.newLine();
             }
         } catch (IOException e) {
@@ -102,23 +111,48 @@ public class Main extends Application {
         }
     }
 
+
+
+
+//    private void setupDefaultAdmin() {
+//        boolean adminExists = false;
+//        for (User user : users) {
+//            if (user.getUsername().equals("admin")) {
+//                adminExists = true;
+//                break;
+//            }
+//        }
+//        if (!adminExists) {
+//            users.add(new User("admin", "admin", "Admin"));
+//            saveUserData();
+//        }
+//    }
+
+//    private void saveUserData() {
+//        try (BufferedWriter writer = new BufferedWriter(new FileWriter(USER_DATA_FILE))) {
+//            for (User user : users) {
+//                writer.write(user.getUsername() + "," + user.getPassword() + "," + user.getRole());
+//                writer.newLine();
+//            }
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
+
     public void showLoginScreen() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("fxml/LoginForm.fxml"));
             Parent root = loader.load();
 
-//            LoginController controller = loader.getController();
-//            controller.setStage(primaryStage);
-
             LoginController controller = loader.getController();
             controller.setMainApp(this);
             controller.setStage(primaryStage);
-//            primaryStage.setFullScreen(true);
-//            primaryStage.centerOnScreen();
+
 
             Scene scene = new Scene(root);
             primaryStage.setScene(scene);
             primaryStage.setTitle("Login");
+            primaryStage.centerOnScreen();
             primaryStage.show();
         } catch (IOException e) {
             e.printStackTrace();
@@ -156,9 +190,10 @@ public class Main extends Application {
                     admissionOfficerController.setLoggedInUser(user);
                     break;
                 case "Librarian":
-                    LibrarianDashboardController librarianController = loader.getController();
-                    librarianController.setMainApp(this);
-                    librarianController.setLoggedInUser(user);
+                    OverViewController overViewController  = loader.getController();
+                    overViewController.setMainApp(this);
+
+//                    overViewController.setLoggedInUser(user);
                     break;
                 // Handle other roles similarly if needed
                 default:
@@ -179,7 +214,7 @@ public class Main extends Application {
     private String getDashboardFXML(String role) {
         switch (role) {
             case "Admin":
-                return "fxml/AdminDashboard1.fxml";
+                return "fxml/AdminDashboard.fxml";
             case "Teacher":
                 return "fxml/TeacherDashboard.fxml";
            case "Student":
@@ -187,10 +222,10 @@ public class Main extends Application {
             case "Admission Officer":
                 return "fxml/AdmissionOfficerDashboard.fxml";
             case "Librarian":
-                return "fxml/LibrarianDashboard.fxml";
+                return "fxml/bookFxml/Overview.fxml";
             // Add cases for other roles as needed
             default:
-                return "fxml/LoginForm5.fxml"; // Default dashboard for unknown roles
+                return "fxml/LoginForm.fxml"; // Default dashboard for unknown roles
         }
     }
 

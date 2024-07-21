@@ -13,30 +13,30 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="815.0" prefWidth="1250.0" styleClass="border-pane" stylesheets="@../css/adminDashboard.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.project.studentmanagement.controllers.AdminDashboardController">
+<BorderPane prefHeight="815.0" prefWidth="1250.0" styleClass="border-pane" stylesheets="@../../com/project/studentmanagement/css/adminDashboard.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.project.studentmanagement.controllers.AdminDashboardController">
 
     <!-- Sidebar -->
     <left>
         <!-- Insert your sidebar content here -->
         <!-- Example: Sidebar menu -->
         <VBox prefHeight="719.0" prefWidth="183.0" styleClass="sidebar">
-            <Button onAction="#showMainDashboard" prefHeight="35.0" prefWidth="150.0" styleClass="button-sidebar" stylesheets="@../css/adminDashboard.css" text="Dashboard">
+            <Button onAction="#showMainDashboard" prefHeight="35.0" prefWidth="150.0" styleClass="button-sidebar" stylesheets="@../../com/project/studentmanagement/css/adminDashboard.css" text="Dashboard">
                 <VBox.margin>
                     <Insets left="5.0" top="15.0" />
                 </VBox.margin></Button>
-            <Button onAction="#showStudentDashboard" prefHeight="35.0" prefWidth="150.0" styleClass="button-sidebar" stylesheets="@../css/adminDashboard.css" text="Student Management">
+            <Button onAction="#showStudentDashboard" prefHeight="35.0" prefWidth="150.0" styleClass="button-sidebar" stylesheets="@../../com/project/studentmanagement/css/adminDashboard.css" text="Student Management">
                 <VBox.margin>
                     <Insets left="5.0" top="15.0" />
                 </VBox.margin></Button>
-            <Button prefHeight="35.0" prefWidth="150.0" styleClass="button-sidebar" stylesheets="@../css/adminDashboard.css" text="Teacher Management">
+            <Button prefHeight="35.0" prefWidth="150.0" styleClass="button-sidebar" stylesheets="@../../com/project/studentmanagement/css/adminDashboard.css" text="Teacher Management">
                 <VBox.margin>
                     <Insets left="5.0" top="15.0" />
                 </VBox.margin></Button>
-            <Button prefHeight="35.0" prefWidth="150.0" styleClass="button-sidebar" stylesheets="@../css/adminDashboard.css" text="Course Management">
+            <Button prefHeight="35.0" prefWidth="150.0" styleClass="button-sidebar" stylesheets="@../../com/project/studentmanagement/css/adminDashboard.css" text="Course Management">
                 <VBox.margin>
                     <Insets left="5.0" top="15.0" />
                 </VBox.margin></Button>
-            <Button prefHeight="35.0" prefWidth="150.0" styleClass="button-sidebar" stylesheets="@../css/adminDashboard.css" text="Settings">
+            <Button prefHeight="35.0" prefWidth="150.0" styleClass="button-sidebar" stylesheets="@../../com/project/studentmanagement/css/adminDashboard.css" text="Settings">
                 <VBox.margin>
                     <Insets left="5.0" top="15.0" />
                 </VBox.margin></Button>
@@ -52,7 +52,7 @@
                             <HBox.margin>
                                 <Insets left="35.0" />
                             </HBox.margin>
-                            <Image url="@../images/logo.png" />
+                            <Image url="@../../com/project/studentmanagement/images/logo.png" />
                         </ImageView>
                         <Label prefHeight="27.0" prefWidth="202.0" text="Student Mangement System">
                             <HBox.margin>
@@ -74,7 +74,7 @@
                             <graphic>
                                 <ImageView fitHeight="16.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
-                                        <Image url="@../images/minimize.png" />
+                                        <Image url="@../../com/project/studentmanagement/images/minimize.png" />
                                     </image>
                                 </ImageView>
                             </graphic>
@@ -85,13 +85,13 @@
                             </HBox.margin>
                             <graphic>
                                 <ImageView fitHeight="14.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
-                                    <Image url="@../images/close.png" />
+                                    <Image url="@../../com/project/studentmanagement/images/close.png" />
                                 </ImageView>
                             </graphic>
                         </Button>
                     </HBox>
                 </HBox>
-                <HBox id="header-buttom" layoutX="-3.0" layoutY="37.0" prefHeight="42.0" prefWidth="1256.0" stylesheets="@../css/adminDashboard.css">
+                <HBox id="header-buttom" layoutX="-3.0" layoutY="37.0" prefHeight="42.0" prefWidth="1256.0" stylesheets="@../../com/project/studentmanagement/css/adminDashboard.css">
                     <HBox alignment="CENTER" prefHeight="34.0" prefWidth="638.0">
                         <Label id="header" prefHeight="30.0" prefWidth="154.0" text="Admin Dashboard" />
                     </HBox>

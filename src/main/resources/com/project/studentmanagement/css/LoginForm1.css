@@ -48,16 +48,19 @@
     -fx-background-color: linear-gradient(to bottom, #277bd0, #1b6fa4);
 }
 
-#minimize, #close {
-    -fx-border-color: black; /* Color of the border */
-    -fx-border-width: 1px;   /* Thickness of the border */
-    -fx-background-color: transparent; /* Transparent background */
-    -fx-background-insets: 0; /* No padding around the content */
-    -fx-background-radius: 0; /* No rounded corners */
-    -fx-text-fill: white;
+#minimize, #close, .button {
+    -fx-border-color: black;
+    -fx-border-width: 1px;
+    -fx-background-insets: 0;
+    -fx-background-radius: 0;
 }
 
 #minimize:hover, #close:hover {
-    -fx-background-color: red; /* Darker shade of red on hover */
-    -fx-text-fill: white;
+    -fx-background-color: #ff4d54;/* Darker shade of red on hover */
+/*    -fx-text-fill: white;*/
+}
+
+.maxclo {
+    -fx-background-color: #dc4046;
+    -fx-text-fill: black;
 }

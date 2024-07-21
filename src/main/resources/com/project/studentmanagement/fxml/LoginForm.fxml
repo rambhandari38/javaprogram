@@ -60,7 +60,7 @@
                   <Font name="System Bold" size="15.0" />
                </font>
             </Label>
-            <Button fx:id="minimize" mnemonicParsing="false" onAction="#handleMinimizeButtonAction" prefHeight="15.0" prefWidth="15.0">
+            <Button fx:id="minimize" mnemonicParsing="false" onAction="#handleMinimizeButtonAction" prefHeight="15.0" prefWidth="15.0" styleClass="maxclo" stylesheets="@../css/LoginForm1.css">
                <HBox.margin>
                   <Insets left="235.0" />
                </HBox.margin>
@@ -72,7 +72,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="close" layoutX="526.0" layoutY="17.0" mnemonicParsing="false" onAction="#handleCloseButtonAction" prefHeight="15.0" prefWidth="15.0">
+            <Button fx:id="close" layoutX="526.0" layoutY="17.0" mnemonicParsing="false" onAction="#handleCloseButtonAction" prefHeight="15.0" prefWidth="15.0" styleClass="maxclo" stylesheets="@../css/LoginForm1.css">
                <HBox.margin>
                   <Insets left="10.0" />
                </HBox.margin>

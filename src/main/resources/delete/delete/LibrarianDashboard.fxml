@@ -5,7 +5,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="CENTER" prefHeight="382.0" prefWidth="269.0" spacing="10" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21" fx:controller="com.project.studentmanagement.controllers.LibrarianDashboardController">
+<VBox alignment="CENTER" prefHeight="382.0" prefWidth="269.0" spacing="10" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21" fx:controller="delete.delete.LibrarianDashboardController">
     <Label fx:id="welcomeLabel" />
     <Label fx:id="roleLabel" />
     <Button onAction="#handleLogout" text="Logout">

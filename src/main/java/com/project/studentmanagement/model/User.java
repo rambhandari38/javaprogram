@@ -1,6 +1,7 @@
 package com.project.studentmanagement.model;
 
 public class User {
+    private int sn;
     private String username;
     private String password;
     private String role;
@@ -9,6 +10,21 @@ public class User {
         this.username = username;
         this.password = password;
         this.role = role;
+    }
+
+    public User(int sn, String username, String password, String role) {
+        this.sn = sn;
+        this.username = username;
+        this.password = password;
+        this.role = role;
+    }
+
+    public int getSn() {
+        return sn;
+    }
+
+    public void setSn(int sn) {
+        this.sn = sn;
     }
 
     public String getUsername() {
@@ -33,5 +49,9 @@ public class User {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public String toCSVFormat() {
+        return sn + "," + username + "," + password + "," + role;
     }
 }
