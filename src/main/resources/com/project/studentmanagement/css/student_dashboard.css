@@ -41,3 +41,26 @@
     -fx-padding: 1;
     fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 10, 0.5, 0, 0);
 }
+
+.avsButton {
+    -fx-background-color: #2584b9;
+    -fx-border-radius: 10;
+    -fx-border-width: 0;
+    -fx-background-radius: 10;
+    -fx-border-color: #3dbceae3;
+    -fx-text-fill: white;
+}
+
+.avsButton:hover {
+    -fx-background-color: #236082;
+    -fx-background-radius: 10;
+}
+
+.sidebarcss {
+    -fx-background-radius: 10;   /* Adjust the radius as needed */
+    -fx-border-color: black;     /* Optional: Border color */
+    /*    -fx-border-radius: 10;       *//* Match the background radius */
+    -fx-border-width: 2;         /* Adjust the border width as needed */
+    -fx-padding: 10;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 10, 0.5, 0, 0);  /* Shadow effect */
+}

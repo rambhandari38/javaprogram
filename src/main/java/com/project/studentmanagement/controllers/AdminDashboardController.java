@@ -7,6 +7,7 @@ import com.opencsv.exceptions.CsvValidationException;
 import com.project.studentmanagement.Main;
 import com.project.studentmanagement.model.Student;
 import com.project.studentmanagement.model.User;
+import com.project.studentmanagement.model.TeacherStaff;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -23,15 +24,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
-
-//import javafx.fxml.FXML;
-//import javafx.scene.control.*;
-//import javafx.scene.layout.AnchorPane;
-//import javafx.scene.control.cell.PropertyValueFactory;
-//import javafx.collections.ObservableList;
-
-//import java.io.*;
-
 
 public class AdminDashboardController {
     @FXML
@@ -76,7 +68,7 @@ public class AdminDashboardController {
     private ObservableList<User> userList;
 
     private List<User> users = new ArrayList<>();
-    private static final String CSV_FILE = "users.csv";
+    private static final String CSV_FILE = "admindata/users.csv";
     private static final AtomicInteger counter = new AtomicInteger(0);
 
 
@@ -171,36 +163,11 @@ public class AdminDashboardController {
     private void handleLogout() {
         mainApp.showLoginScreen();
     }
-
     private User loggedInUser;
-
     public void setLoggedInUser(User user) {
         this.loggedInUser = user;
-//        welcomeLabel.setText("Welcome, " + user.getUsername() + "!");
-//        roleLabel.setText("Role: " + user.getRole());
     }
-
-
-//    ------------------------------------------------------------------------------------------
-//@FXML
-//public void initialize() {
-//    userList = FXCollections.observableArrayList();
-//    snColumn.setCellValueFactory(new PropertyValueFactory<>("sn"));
-//    usernameColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
-//    passwordColumn.setCellValueFactory(new PropertyValueFactory<>("password"));
-//    roleColumn.setCellValueFactory(new PropertyValueFactory<>("role"));
-//    userTable.setItems(userList);
-//    loadUsersFromFile();
-//
-//    userTable.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
-//        if (newSelection != null) {
-//            usernameField.setText(newSelection.getUsername());
-//            passwordField.setText(newSelection.getPassword());
-//            confirmPasswordField.setText(newSelection.getPassword());
-//            roleField.setText(newSelection.getRole());
-//        }
-//    });
-//}
+//    -------------------------------------------------------------------------------------
 
     @FXML
     public void initialize() {
@@ -248,7 +215,7 @@ public class AdminDashboardController {
             }
         });
 
-
+//        _____________________________________________________
         studentIDColumn2.setCellValueFactory(new PropertyValueFactory<>("studentID"));
         firstNameColumn2.setCellValueFactory(new PropertyValueFactory<>("firstName"));
         lastNameColumn2.setCellValueFactory(new PropertyValueFactory<>("lastName"));
@@ -444,12 +411,7 @@ public class AdminDashboardController {
         ButtonType result = alert.showAndWait().orElse(ButtonType.CANCEL);
         return result == ButtonType.OK;
     }
-
-
 //    ---------------------------------------------------------------------------------------------------------------------------------
-
-
-
         @FXML
         private Button addTeacherAndStaffButton;
 
@@ -518,7 +480,7 @@ public class AdminDashboardController {
         private ObservableList<TeacherStaff> teacherStaffList = FXCollections.observableArrayList();
 
     private void saveToCSV() {
-        try (CSVWriter writer = new CSVWriter(new FileWriter("teacher.csv"))) {
+        try (CSVWriter writer = new CSVWriter(new FileWriter("admindata/teacher.csv"))) {
             // Write header
             String[] header = {"TeacherID", "FirstName", "LastName", "Email", "Phone", "Department", "SubjectTaught", "Experience"};
             writer.writeNext(header);
@@ -544,24 +506,13 @@ public class AdminDashboardController {
 
     @FXML
     private void readTeacherAndStaff() {
-        // Logic to read teacher and staff details
-//        TeacherStaff selectedTeacherStaff = userTable1.getSelectionModel().getSelectedItem();
-//        if (selectedTeacherStaff != null) {
-//            firstNameField1.setText(selectedTeacherStaff.getFirstName());
-//            lastNameField1.setText(selectedTeacherStaff.getLastName());
-//            emailField1.setText(selectedTeacherStaff.getEmail());
-//            phoneField.setText(selectedTeacherStaff.getPhone());
-//            departmentField.setText(selectedTeacherStaff.getDepartment());
-//            subjectTaughtField.setText(selectedTeacherStaff.getSubjectTaught());
-//            experienceField.setText(String.valueOf(selectedTeacherStaff.getExperience()));
-//        }
         clearFields();
     }
 
 
     private void loadFromCSV() {
         teacherStaffList.clear(); // Clear existing data to avoid duplicates
-        try (CSVReader reader = new CSVReader(new FileReader("teacher.csv"))) {
+        try (CSVReader reader = new CSVReader(new FileReader("admindata/teacher.csv"))) {
             String[] header = reader.readNext(); // Read header (optional)
             String[] line;
             while ((line = reader.readNext()) != null) {
@@ -632,66 +583,62 @@ public class AdminDashboardController {
         return false;
     }
 
-
-
     @FXML
-    public void updateTeacherAndStaff() {
-        User selectedUser = userTable.getSelectionModel().getSelectedItem();
-        if (selectedUser != null) {
-            if (confirmAction("Update User", "Do you want to update this user?")) {
-                String newUsername = usernameField.getText();
-                String newPassword = passwordField.getText();
-                String newConfirmPassword = confirmPasswordField.getText();
-                String newRole = roleField.getText();
+    private void updateTeacherAndStaff() {
+        TeacherStaff selectedTeacherStaff = userTable1.getSelectionModel().getSelectedItem();
+        if (selectedTeacherStaff != null) {
+            if (confirmAction("Update Teacher/Staff", "Do you want to update this teacher/staff?")) {
+                // Get new values from text fields
+                String newFirstName = firstNameField1.getText();
+                String newLastName = lastNameField1.getText();
+                String newEmail = emailField1.getText();
+                String newPhone = phoneField.getText();
+                String newDepartment = departmentField.getText();
+                String newSubjectTaught = subjectTaughtField.getText();
+                int newExperience;
 
                 // Validate fields
-                if (newUsername.isEmpty() || newPassword.isEmpty() || newConfirmPassword.isEmpty() || newRole.isEmpty()) {
+                if (newFirstName.isEmpty() || newLastName.isEmpty() || newEmail.isEmpty() || newPhone.isEmpty() ||
+                        newDepartment.isEmpty() || newSubjectTaught.isEmpty()) {
                     showAlert(Alert.AlertType.ERROR, "Error", "All fields must be filled!");
                     return;
                 }
 
-                if (!newPassword.equals(newConfirmPassword)) {
-                    showAlert(Alert.AlertType.ERROR, "Error", "Passwords do not match!");
+                try {
+                    newExperience = Integer.parseInt(experienceField.getText());
+                } catch (NumberFormatException e) {
+                    showAlert(Alert.AlertType.ERROR, "Error", "Experience must be a valid number!");
                     return;
                 }
 
-                // Check for unique username
-                boolean usernameExists = userList.stream()
-                        .anyMatch(user -> user.getUsername().equals(newUsername) && user != selectedUser);
-                if (usernameExists) {
-                    showAlert(Alert.AlertType.ERROR, "Error", "Username must be unique!");
+                // Check for unique email
+                boolean emailExists = teacherStaffList.stream()
+                        .anyMatch(teacher -> teacher.getEmail().equals(newEmail) && teacher != selectedTeacherStaff);
+                if (emailExists) {
+                    showAlert(Alert.AlertType.ERROR, "Error", "Email must be unique!");
                     return;
                 }
 
-                // Update user details
-                selectedUser.setUsername(newUsername);
-                selectedUser.setPassword(newPassword);
-                selectedUser.setRole(newRole);
+                // Update teacher/staff details
+                selectedTeacherStaff.setFirstName(newFirstName);
+                selectedTeacherStaff.setLastName(newLastName);
+                selectedTeacherStaff.setEmail(newEmail);
+                selectedTeacherStaff.setPhone(newPhone);
+                selectedTeacherStaff.setDepartment(newDepartment);
+                selectedTeacherStaff.setSubjectTaught(newSubjectTaught);
+                selectedTeacherStaff.setExperience(newExperience);
 
-                // Refresh the table and save changes
-                userTable.refresh();
-                saveUsersToFile();
+                // Refresh the table and save changes to CSV
+                userTable1.refresh();
+                saveToCSV();
 
                 // Clear fields
-                usernameField.clear();
-                passwordField.clear();
-                confirmPasswordField.clear();
-                roleField.clear();
+                clearFields();
             }
         } else {
-            showAlert(Alert.AlertType.ERROR, "Error", "Select a user to update!");
+            showAlert(Alert.AlertType.ERROR, "Error", "Select a teacher/staff to update!");
         }
     }
-
-
-//    private void showAlertt(Alert.AlertType alertType, String title, String message) {
-//        Alert alert = new Alert(alertType);
-//        alert.setTitle(title);
-//        alert.setHeaderText(null);
-//        alert.setContentText(message);
-//        alert.showAndWait();
-//    }
-
 
     @FXML
     private void deleteTeacherAndStaff() {
@@ -719,17 +666,12 @@ public class AdminDashboardController {
             if (teacherStaff.getFirstName().toLowerCase().contains(searchQuery) ||
                     teacherStaff.getLastName().toLowerCase().contains(searchQuery) ||
                     teacherStaff.getEmail().toLowerCase().contains(searchQuery)) {
-                filteredList.add(teacherStaff);
+                    filteredList.add(teacherStaff);
             }
         }
 
         userTable1.setItems(filteredList);
-
-//        // Debugging information
-//        System.out.println("Search Query: " + searchQuery);
-//        System.out.println("Number of results found: " + filteredList.size());
     }
-
 
     private void clearFields() {
             firstNameField1.clear();
@@ -745,92 +687,7 @@ public class AdminDashboardController {
             // Generate a unique teacher ID (for simplicity, using the size of the list)
             return "T" + (teacherStaffList.size() + 1);
         }
-
-        public static class TeacherStaff {
-            private final String teacherID;
-            private String firstName;
-            private String lastName;
-            private String email;
-            private String phone;
-            private String department;
-            private String subjectTaught;
-            private int experience;
-
-            public TeacherStaff(String teacherID, String firstName, String lastName, String email, String phone,
-                                String department, String subjectTaught, int experience) {
-                this.teacherID = teacherID;
-                this.firstName = firstName;
-                this.lastName = lastName;
-                this.email = email;
-                this.phone = phone;
-                this.department = department;
-                this.subjectTaught = subjectTaught;
-                this.experience = experience;
-            }
-
-            public String getTeacherID() {
-                return teacherID;
-            }
-
-            public String getFirstName() {
-                return firstName;
-            }
-
-            public void setFirstName(String firstName) {
-                this.firstName = firstName;
-            }
-
-            public String getLastName() {
-                return lastName;
-            }
-
-            public void setLastName(String lastName) {
-                this.lastName = lastName;
-            }
-
-            public String getEmail() {
-                return email;
-            }
-
-            public void setEmail(String email) {
-                this.email = email;
-            }
-
-            public String getPhone() {
-                return phone;
-            }
-
-            public void setPhone(String phone) {
-                this.phone = phone;
-            }
-
-            public String getDepartment() {
-                return department;
-            }
-
-            public void setDepartment(String department) {
-                this.department = department;
-            }
-
-            public String getSubjectTaught() {
-                return subjectTaught;
-            }
-
-            public void setSubjectTaught(String subjectTaught) {
-                this.subjectTaught = subjectTaught;
-            }
-
-            public int getExperience() {
-                return experience;
-            }
-
-            public void setExperience(int experience) {
-                this.experience = experience;
-            }
-    }
 //------------------------------------------------------------------------------
-
-    @FXML private AnchorPane addStudentAdminDashboard2;
     @FXML private TextField firstNameField2;
     @FXML private TextField lastNameField2;
     @FXML private TextField facultyField2;
@@ -861,37 +718,9 @@ public class AdminDashboardController {
 
     private ObservableList<Student> studentList = FXCollections.observableArrayList();
 
-//    @FXML
-//    private void initialize() {
-//        // Initialize table columns
-//        studentIDColumn2.setCellValueFactory(new PropertyValueFactory<>("studentID"));
-//        firstNameColumn2.setCellValueFactory(new PropertyValueFactory<>("firstName"));
-//        lastNameColumn2.setCellValueFactory(new PropertyValueFactory<>("lastName"));
-//        facultyColumn2.setCellValueFactory(new PropertyValueFactory<>("faculty"));
-//        emailColumn2.setCellValueFactory(new PropertyValueFactory<>("email"));
-//        genderColumn2.setCellValueFactory(new PropertyValueFactory<>("gender"));
-//        phoneNumberColumn2.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
-//        addressColumn2.setCellValueFactory(new PropertyValueFactory<>("address"));
-//        dobColumn2.setCellValueFactory(new PropertyValueFactory<>("dob"));
-//        enrollDateColumn2.setCellValueFactory(new PropertyValueFactory<>("enrollDate"));
-//
-//        studentTableView2.setItems(studentList);
-//    }
-
-//    @FXML
-//    private void showAddStudentDashboard2() {
-//        addStudentAdminDashboard2.setVisible(true);
-//    }
-
-//    import com.opencsv.CSVWriter;
-//import java.io.FileWriter;
-//import java.io.IOException;
-//import java.time.format.DateTimeFormatter;
-//import java.util.List;
-
     @FXML
     private void saveStudentsToCSV() {
-        try (CSVWriter writer = new CSVWriter(new FileWriter("students.csv"))) {
+        try (CSVWriter writer = new CSVWriter(new FileWriter("admindata/students.csv"))) {
             // Write header
             writer.writeNext(new String[]{"StudentID", "FirstName", "LastName", "Faculty", "Email", "Gender", "PhoneNumber", "Address", "DOB", "EnrollDate"});
 
@@ -916,7 +745,7 @@ public class AdminDashboardController {
     }
 
     private void loadStudentsFromFile() {
-        File file = new File("students.csv");
+        File file = new File("admindata/students.csv");
 
         if (!file.exists()) {
             return;
@@ -1085,20 +914,6 @@ public class AdminDashboardController {
         }
     }
 
-
-
-
-//    @FXML
-//    private void deleteStudent2() {
-//        Student selectedStudent = studentTableView2.getSelectionModel().getSelectedItem();
-//        if (selectedStudent != null) {
-//            studentList.remove(selectedStudent);
-//
-//            // Clear fields
-//            clearFields();
-//        }
-//    }
-
     @FXML
     private void deleteStudent2() {
         Student selectedStudent = studentTableView2.getSelectionModel().getSelectedItem();
@@ -1128,21 +943,5 @@ public class AdminDashboardController {
 
         studentTableView2.setItems(FXCollections.observableArrayList(filteredList));
     }
-
-
-    private void clearFields2() {
-        firstNameField2.clear();
-        lastNameField2.clear();
-        facultyField2.clear();
-        emailField2.clear();
-        genderField2.clear();
-        phoneNumberField2.clear();
-        addressField2.clear();
-        statusField2.clear();
-        dobPicker2.setValue(null);
-        enrollDatePicker2.setValue(null);
-    }
-
-//------------------------------------------------------------------------------
 
 }

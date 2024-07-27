@@ -1,8 +1,10 @@
 package com.project.studentmanagement;
 
 import com.project.studentmanagement.controllers.*;
-import com.project.studentmanagement.controllers.bookController.OverViewController;
+import com.project.studentmanagement.controllers.teacherController.TeacherDashboardController;
 import com.project.studentmanagement.model.User;
+import com.project.studentmanagement.controllers.bookController.OverViewController;
+import com.project.studentmanagement.controllers.studentController.StudentDashboard;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -27,17 +29,12 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) {
         this.primaryStage = primaryStage;
-
         primaryStage.initStyle(StageStyle.UNDECORATED);
 
         loadCredentials();
         loadUserData();
         setupDefaultAdmin(); // Ensure default admin is added if not already present
         showLoginScreen();
-    }
-
-    public List<User> getUsers() {
-        return users;
     }
 
     private void loadUserData() {
@@ -54,7 +51,7 @@ public class Main extends Application {
                     if (parts.length == 4) {
                         int sn = Integer.parseInt(parts[0]);
                         String username = parts[1];
-                        String password = parts[2];
+                        String password = parts[2]; // Changed from hashedPassword to password
                         String role = parts[3];
                         users.add(new User(sn, username, password, role));
                     }
@@ -65,7 +62,6 @@ public class Main extends Application {
         }
     }
 
-
     private void loadCredentials() {
         try (BufferedReader reader = new BufferedReader(new FileReader(CREDENTIALS_FILE))) {
             String line;
@@ -74,7 +70,7 @@ public class Main extends Application {
                 if (parts.length == 4) { // Ensure four parts
                     int sn = Integer.parseInt(parts[0]);
                     String username = parts[1];
-                    String password = parts[2];
+                    String password = parts[2]; // Changed from hashedPassword to password
                     String role = parts[3];
                     credentials.put(username, password + "," + role); // Handle role for login
                 }
@@ -83,7 +79,6 @@ public class Main extends Application {
             e.printStackTrace();
         }
     }
-
 
     private void setupDefaultAdmin() {
         boolean adminExists = false;
@@ -99,7 +94,6 @@ public class Main extends Application {
         }
     }
 
-
     private void saveUserData() {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(USER_DATA_FILE))) {
             for (User user : users) {
@@ -111,34 +105,6 @@ public class Main extends Application {
         }
     }
 
-
-
-
-//    private void setupDefaultAdmin() {
-//        boolean adminExists = false;
-//        for (User user : users) {
-//            if (user.getUsername().equals("admin")) {
-//                adminExists = true;
-//                break;
-//            }
-//        }
-//        if (!adminExists) {
-//            users.add(new User("admin", "admin", "Admin"));
-//            saveUserData();
-//        }
-//    }
-
-//    private void saveUserData() {
-//        try (BufferedWriter writer = new BufferedWriter(new FileWriter(USER_DATA_FILE))) {
-//            for (User user : users) {
-//                writer.write(user.getUsername() + "," + user.getPassword() + "," + user.getRole());
-//                writer.newLine();
-//            }
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
-
     public void showLoginScreen() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("fxml/LoginForm.fxml"));
@@ -147,7 +113,6 @@ public class Main extends Application {
             LoginController controller = loader.getController();
             controller.setMainApp(this);
             controller.setStage(primaryStage);
-
 
             Scene scene = new Scene(root);
             primaryStage.setScene(scene);
@@ -159,7 +124,6 @@ public class Main extends Application {
         }
     }
 
-//    ---------------------------------------------------------------------------------
     public void showDashboard(User user) {
         try {
             FXMLLoader loader = new FXMLLoader();
@@ -171,29 +135,25 @@ public class Main extends Application {
                 case "Admin":
                     AdminDashboardController adminController = loader.getController();
                     adminController.setMainApp(this);
-                    adminController.setLoggedInUser(user);
                     adminController.setStage(primaryStage);
                     break;
                 case "Teacher":
                     TeacherDashboardController teacherController = loader.getController();
                     teacherController.setMainApp(this);
-                    teacherController.setLoggedInUser(user);
-                    break;
+                    teacherController.setStage(primaryStage);
+                break;
                 case "Student":
-                    StudentDashboardController studentController = loader.getController();
-                    studentController.setMainApp(this);
-                    studentController.setLoggedInUser(user);
+                    StudentDashboard studentDashboard = loader.getController();
+                    studentDashboard.setMainApp(this);
                     break;
                 case "Admission Officer":
                     AdmissionOfficerDashboardController admissionOfficerController = loader.getController();
                     admissionOfficerController.setMainApp(this);
-                    admissionOfficerController.setLoggedInUser(user);
+                    admissionOfficerController.setStage(primaryStage);
                     break;
                 case "Librarian":
                     OverViewController overViewController  = loader.getController();
                     overViewController.setMainApp(this);
-
-//                    overViewController.setLoggedInUser(user);
                     break;
                 // Handle other roles similarly if needed
                 default:
@@ -210,31 +170,27 @@ public class Main extends Application {
         }
     }
 
-
     private String getDashboardFXML(String role) {
         switch (role) {
             case "Admin":
                 return "fxml/AdminDashboard.fxml";
             case "Teacher":
-                return "fxml/TeacherDashboard.fxml";
-           case "Student":
-                return "fxml/StudentDashboard.fxml";
+                return "fxml/teacherfxml/TeacherDashboard.fxml";
+            case "Student":
+                return "fxml/studentfxml/StudentDashboard.fxml";
             case "Admission Officer":
                 return "fxml/AdmissionOfficerDashboard.fxml";
             case "Librarian":
                 return "fxml/bookFxml/Overview.fxml";
-            // Add cases for other roles as needed
             default:
                 return "fxml/LoginForm.fxml"; // Default dashboard for unknown roles
         }
     }
 
-//    ------------------------------------------------------------------------------
-
     public User validateLogin(String username, String password) {
-        // Check in admin users (user.txt)
+        // Check in users (user.txt)
         for (User user : users) {
-            if (user.getUsername().equals(username) && user.getPassword().equals(password)) {
+            if (user.getUsername().equals(username) && user.verifyPassword(password)) {
                 return user;
             }
         }
@@ -251,27 +207,6 @@ public class Main extends Application {
         }
 
         return null;
-    }
-
-    public void addUser(User user) {
-        users.add(user);
-        saveUserData();
-    }
-
-    public void addUserToFile(User user) {
-        credentials.put(user.getUsername(), user.getPassword() + "," + user.getRole()); // Added for role handling
-        saveCredentials();
-    }
-
-    private void saveCredentials() {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(CREDENTIALS_FILE))) {
-            for (Map.Entry<String, String> entry : credentials.entrySet()) {
-                writer.write(entry.getKey() + "," + entry.getValue());
-                writer.newLine();
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     public void showAlert(String title, String message, Alert.AlertType type) {

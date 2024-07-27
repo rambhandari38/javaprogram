@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane prefHeight="815.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.project.studentmanagement.controllers.studentController.StudentDashboard">
+    <top>
+        <HBox alignment="CENTER" prefHeight="64.0" prefWidth="1290.0" style="-fx-background-color: #444444;">
+            <Label prefHeight="38.0" prefWidth="235.0" style="-fx-text-fill: white; -fx-font-size: 24px;" text="Student Dashboard">
+            <HBox.margin>
+               <Insets left="19.0" />
+            </HBox.margin></Label>
+         <HBox alignment="CENTER_RIGHT" prefHeight="54.0" prefWidth="1051.0">
+            <children>
+               <Button fx:id="close" mnemonicParsing="false" onAction="#handleCloseButtonAction" prefHeight="30.0" prefWidth="55.0" text="close">
+                  <HBox.margin>
+                     <Insets right="15.0" />
+                  </HBox.margin></Button>
+            </children>
+         </HBox>
+        </HBox>
+    </top>
+    <left>
+        <VBox alignment="TOP_CENTER" prefHeight="751.0" prefWidth="232.0" style="-fx-background-color: #444444; -fx-border-color: black; -fx-border-width: 5;">
+            <Button onAction="#loadOverview" prefHeight="37.0" prefWidth="170.0" styleClass="avsButton" stylesheets="@../../css/student_dashboard.css" text="Overview">
+            <VBox.margin>
+               <Insets top="15.0" />
+            </VBox.margin></Button>
+            <Button onAction="#loadMyAssignment" prefHeight="37.0" prefWidth="170.0" styleClass="avsButton" stylesheets="@../../css/student_dashboard.css" text="My Assignments">
+            <VBox.margin>
+               <Insets top="15.0" />
+            </VBox.margin></Button>
+            <Button onAction="#loadGrade" prefHeight="37.0" prefWidth="170.0" styleClass="avsButton" stylesheets="@../../css/student_dashboard.css" text="Grades">
+            <VBox.margin>
+               <Insets top="15.0" />
+            </VBox.margin></Button>
+            <Button onAction="#loadAttendance" prefHeight="37.0" prefWidth="170.0" styleClass="avsButton" stylesheets="@../../css/student_dashboard.css" text="Attendance">
+            <VBox.margin>
+               <Insets top="15.0" />
+            </VBox.margin></Button>
+            <Button onAction="#loadCourseSchedule" prefHeight="37.0" prefWidth="170.0" styleClass="avsButton" stylesheets="@../../css/student_dashboard.css" text="Course Schedule">
+            <VBox.margin>
+               <Insets top="15.0" />
+            </VBox.margin></Button>
+            <Button onAction="#loadPersonalInformation" prefHeight="37.0" prefWidth="170.0" styleClass="avsButton" stylesheets="@../../css/student_dashboard.css" text="Personal Information">
+            <VBox.margin>
+               <Insets top="15.0" />
+            </VBox.margin></Button>
+            <Button onAction="#loadForm" prefHeight="37.0" prefWidth="170.0" styleClass="avsButton" stylesheets="@../../css/student_dashboard.css" text="Form">
+            <VBox.margin>
+               <Insets top="15.0" />
+            </VBox.margin></Button>
+            <Button onAction="#loadAnnouncementDashboard" prefHeight="37.0" prefWidth="170.0" styleClass="avsButton" stylesheets="@../../css/student_dashboard.css" text="Announcement">
+            <VBox.margin>
+               <Insets top="15.0" />
+            </VBox.margin></Button>
+        </VBox>
+    </left>
+    <center>
+        <StackPane fx:id="contentPane" prefHeight="1250.0" style="-fx-background-color: white;">
+            <Label prefHeight="144.0" prefWidth="491.0" style="-fx-background-color: #444444; -fx-text-fill: white;" text="Welcome to the Student Dashboard">
+            <font>
+               <Font size="29.0" />
+            </font>
+            <padding>
+               <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+            </padding></Label>
+        </StackPane>
+    </center>
+</BorderPane>

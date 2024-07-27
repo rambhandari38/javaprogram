@@ -1,7 +1,8 @@
-module com.example.trainging5 {
+module com.example.studentmanagement {
     requires javafx.controls;
     requires javafx.fxml;
     requires com.opencsv;
+    requires java.logging;
 
 
     opens com.project.studentmanagement to javafx.fxml;
@@ -13,11 +14,13 @@ module com.example.trainging5 {
     exports com.project.studentmanagement.model;
     opens com.project.studentmanagement.model to javafx.fxml;
 
-//    exports delete.delete;
-//    opens delete.delete to javafx.fxml;
     exports com.project.studentmanagement.controllers.bookController;
     opens com.project.studentmanagement.controllers.bookController to javafx.fxml;
-    exports delete.delete;
-    opens delete.delete to javafx.fxml;
+
+    exports com.project.studentmanagement.controllers.studentController;
+    opens com.project.studentmanagement.controllers.studentController to javafx.fxml;
+
+    exports com.project.studentmanagement.controllers.teacherController;
+    opens com.project.studentmanagement.controllers.teacherController to javafx.fxml;
 }
 

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane prefHeight="634.0" prefWidth="833.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.project.studentmanagement.controllers.studentController.AnnouncementDashboardController">
+
+    <center>
+        <VBox prefHeight="605.0" prefWidth="814.0" style="-fx-background-color: white; -fx-padding: 20px;">
+            <Label style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Announcement Dashboard" />
+            <VBox prefHeight="558.0" prefWidth="822.0" style="-fx-background-color: #f0f0f0; -fx-padding: 20px; -fx-spacing: 10px;">
+                <HBox prefHeight="136.0" prefWidth="755.0" style="-fx-background-color: white; -fx-padding: 10px; -fx-border-color: #ccc; -fx-border-width: 1px;">
+                    <VBox>
+                        <Label fx:id="importantNoticeTitle" style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Important Notice" />
+                        <Label fx:id="importantNoticeContent" />
+                        <Label fx:id="importantNoticeDate" style="-fx-font-size: 12px; -fx-text-fill: #888;" text="Posted on: 2024-07-05" />
+                    </VBox>
+               <VBox.margin>
+                  <Insets top="14.0" />
+               </VBox.margin>
+                </HBox>
+                <HBox prefHeight="128.0" prefWidth="762.0" style="-fx-background-color: white; -fx-padding: 10px; -fx-border-color: #ccc; -fx-border-width: 1px;">
+                    <VBox>
+                        <Label fx:id="examScheduleTitle" style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Exam Schedule Update" />
+                        <Label fx:id="examScheduleContent" />
+                        <Label fx:id="examScheduleDate" style="-fx-font-size: 12px; -fx-text-fill: #888;" text="Posted on: 2024-07-05" />
+                    </VBox>
+               <VBox.margin>
+                  <Insets top="34.0" />
+               </VBox.margin>
+                </HBox>
+                <HBox prefHeight="124.0" prefWidth="765.0" style="-fx-background-color: white; -fx-padding: 10px; -fx-border-color: #ccc; -fx-border-width: 1px;">
+                    <VBox>
+                        <Label fx:id="libraryClosureTitle" style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Library Closure" />
+                        <Label fx:id="libraryClosureContent" />
+                        <Label fx:id="libraryClosureDate" style="-fx-font-size: 12px; -fx-text-fill: #888;" text="Posted on: 2024-07-04" />
+                    </VBox>
+               <VBox.margin>
+                  <Insets top="34.0" />
+               </VBox.margin>
+                </HBox>
+            <VBox.margin>
+               <Insets top="5.0" />
+            </VBox.margin>
+            </VBox>
+        </VBox>
+    </center>
+</BorderPane>

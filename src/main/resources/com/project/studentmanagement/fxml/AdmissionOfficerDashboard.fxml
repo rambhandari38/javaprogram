@@ -1,14 +1,288 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" spacing="10" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.project.studentmanagement.controllers.AdmissionOfficerDashboardController">
-    <Label fx:id="welcomeLabel"/>
-    <Label fx:id="roleLabel"/>
-    <Button text="Logout" onAction="#handleLogout"/>
-</VBox>
+<BorderPane prefHeight="846.0" prefWidth="1211.0" styleClass="border-pane" stylesheets="@../css/adminDashboard.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.project.studentmanagement.controllers.AdmissionOfficerDashboardController">
+
+   <!-- Sidebar -->
+   <left>
+      <!-- Insert your sidebar content here -->
+      <!-- Example: Sidebar menu -->
+      <VBox id="sidebarcss" prefHeight="779.0" prefWidth="190.0" styleClass="sidebar">
+         <Button onAction="#showMainDashboard" prefHeight="35.0" prefWidth="150.0" styleClass="avsButton" stylesheets="@../css/adminDashboard.css" text="Dashboard">
+            <VBox.margin>
+               <Insets left="5.0" top="15.0" />
+            </VBox.margin></Button>
+         <Button onAction="#showStudentDashboard" prefHeight="35.0" prefWidth="150.0" styleClass="avsButton" stylesheets="@../css/adminDashboard.css" text="Student Management">
+            <VBox.margin>
+               <Insets left="5.0" top="15.0" />
+            </VBox.margin></Button>
+         <BorderPane.margin>
+            <Insets top="5.0" />
+         </BorderPane.margin>
+         <!-- Add more sidebar options as needed -->
+      </VBox>
+   </left>
+   <top>
+      <HBox onMouseDragged="#handleTitleBarDragged" onMousePressed="#handleTitleBarPressed" prefHeight="75.0" prefWidth="1250.0" BorderPane.alignment="CENTER">
+         <Pane prefHeight="85.0" prefWidth="1273.0">
+            <HBox layoutX="-6.0" layoutY="1.0" prefHeight="39.0" prefWidth="1280.0">
+               <HBox alignment="CENTER_LEFT" prefHeight="34.0" prefWidth="1030.0">
+                  <ImageView fitHeight="26.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                     <HBox.margin>
+                        <Insets left="35.0" />
+                     </HBox.margin>
+                     <Image url="@../images/logo.png" />
+                  </ImageView>
+                  <Label prefHeight="27.0" prefWidth="202.0" text="Student Mangement System">
+                     <HBox.margin>
+                        <Insets left="15.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+               </HBox>
+               <HBox alignment="CENTER_RIGHT" layoutX="10.0" layoutY="10.0" prefHeight="34.0" prefWidth="855.0">
+                  <HBox.margin>
+                     <Insets />
+                  </HBox.margin>
+                  <Button fx:id="minimize" mnemonicParsing="false" onAction="#handleMinimizeButtonAction" prefHeight="23.0" prefWidth="34.0" styleClass="maxclo" stylesheets="@../css/adminDashboard.css">
+                     <HBox.margin>
+                        <Insets right="15.0" />
+                     </HBox.margin>
+                     <graphic>
+                        <ImageView fitHeight="16.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+                           <Image url="@../images/minimize.png" />
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="close" mnemonicParsing="false" onAction="#handleCloseButtonAction" prefHeight="23.0" prefWidth="29.0" styleClass="maxclo" stylesheets="@../css/adminDashboard.css">
+                     <HBox.margin>
+                        <Insets right="15.0" />
+                     </HBox.margin>
+                     <graphic>
+                        <ImageView fitHeight="14.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                           <Image url="@../images/close.png" />
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </HBox>
+            </HBox>
+            <HBox id="header-buttom" layoutX="-12.0" layoutY="38.0" prefHeight="43.0" prefWidth="1287.0" style="-fx-background-color: #444444;" stylesheets="@../css/adminDashboard.css">
+               <HBox alignment="CENTER" prefHeight="50.0" prefWidth="627.0">
+                  <Label id="header" prefHeight="32.0" prefWidth="250.0" text="Admission Officer Dashboard">
+                     <HBox.margin>
+                        <Insets left="165.0" />
+                     </HBox.margin></Label>
+               </HBox>
+               <HBox alignment="CENTER_RIGHT" layoutX="10.0" layoutY="10.0" prefHeight="44.0" prefWidth="650.0">
+                  <Button id="logoutbtn" mnemonicParsing="false" onAction="#handleLogout" prefHeight="28.0" prefWidth="57.0" text="Logout">
+                     <HBox.margin>
+                        <Insets right="15.0" />
+                     </HBox.margin>
+                  </Button>
+               </HBox>
+            </HBox>
+         </Pane>
+      </HBox>
+   </top>
+   <center>
+      <StackPane prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <AnchorPane fx:id="mainDashboard" prefHeight="200.0" prefWidth="200.0">
+            <HBox layoutX="23.0" layoutY="151.0" prefHeight="246.0" prefWidth="996.0" style="-fx-background-color: #444444;">
+               <VBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="236.0" prefWidth="1000.0" styleClass="search-fieldbyID" stylesheets="@../css/student_dashboard.css">
+                  <children>
+                     <Label prefHeight="44.0" prefWidth="182.0" style="-fx-text-fill: white;" text="Store Data of Student">
+                        <font>
+                           <Font name="System Bold" size="15.0" />
+                        </font>
+                     </Label>
+                  </children></VBox>
+            </HBox>
+            <HBox alignment="CENTER" layoutX="23.0" layoutY="17.0" prefHeight="182.0" prefWidth="995.0" style="-fx-background-color: #444444;" styleClass="search-fieldbyID" stylesheets="@../css/student_dashboard.css">
+               <Label prefHeight="58.0" prefWidth="244.0" style="-fx-text-fill: white;" text="Admission Officer Dashboard">
+                  <font>
+                     <Font name="System Bold" size="23.0" />
+                  </font>
+                  <HBox.margin>
+                     <Insets />
+                  </HBox.margin>
+               </Label>
+            </HBox>
+         </AnchorPane>
+         <AnchorPane id="viewStudentDashboard" fx:id="studentDashboard" prefHeight="690.0" prefWidth="1071.0" style="-fx-background-color: #444444;" visible="false">
+            <StackPane.margin>
+               <Insets top="5.0" />
+            </StackPane.margin>
+            <HBox alignment="CENTER_LEFT" prefHeight="42.0" prefWidth="1083.0" style="-fx-background-color: black;">
+               <Button mnemonicParsing="false" onAction="#showAddStudentDashboard" prefHeight="27.0" prefWidth="86.0" styleClass="avsButton" text="Add Student">
+                  <HBox.margin>
+                     <Insets left="31.0" />
+                  </HBox.margin>
+               </Button>
+            </HBox>
+            <AnchorPane fx:id="addStudentAdminDashboard" layoutY="40.0" prefHeight="721.0" prefWidth="1071.0" style="-fx-background-color: #444444;">
+               <AnchorPane id="addStudentLeftDashboard" layoutX="14.0" layoutY="9.0" prefHeight="688.0" prefWidth="293.0" style="-fx-background-color: white;" stylesheets="@../css/createAccount.css">
+                  <Label layoutX="78.0" layoutY="14.0" prefHeight="27.0" prefWidth="121.0" text="Add Student">
+                     <font>
+                        <Font name="Tahoma Bold" size="19.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="9.0" layoutY="71.0" text="First Name:">
+                     <font>
+                        <Font name="Tahoma Bold" size="13.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="firstNameField2" layoutX="107.0" layoutY="66.0" prefHeight="30.0" prefWidth="167.0" promptText="firstname" />
+
+                  <Label layoutX="10.0" layoutY="117.0" text="Last Name:">
+                     <font>
+                        <Font name="Tahoma Bold" size="13.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="lastNameField2" layoutX="106.0" layoutY="112.0" prefHeight="30.0" prefWidth="167.0" promptText="lastname" />
+
+                  <Label layoutX="10.0" layoutY="164.0" text="Faculty:">
+                     <font>
+                        <Font name="Tahoma Bold" size="13.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="facultyField2" layoutX="106.0" layoutY="159.0" prefHeight="30.0" prefWidth="167.0" promptText="faculty" />
+
+                  <Label layoutX="5.0" layoutY="210.0" text="Email:">
+                     <font>
+                        <Font name="Tahoma Bold" size="13.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="emailField2" layoutX="105.0" layoutY="205.0" prefHeight="30.0" prefWidth="167.0" promptText="email" />
+
+                  <Label layoutX="10.0" layoutY="261.0" text="Gender:">
+                     <font>
+                        <Font name="Tahoma Bold" size="13.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="genderField2" layoutX="105.0" layoutY="255.0" prefHeight="30.0" prefWidth="167.0" promptText="gender" />
+
+                  <Label layoutX="9.0" layoutY="304.0" text="Phone:">
+                     <font>
+                        <Font name="Tahoma Bold" size="13.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="phoneNumberField2" layoutX="104.0" layoutY="299.0" prefHeight="30.0" prefWidth="167.0" promptText="phone no." />
+
+                  <Label layoutX="8.0" layoutY="345.0" text="Address:">
+                     <font>
+                        <Font name="Tahoma Bold" size="13.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="addressField2" layoutX="102.0" layoutY="339.0" prefHeight="30.0" prefWidth="167.0" promptText="address" />
+
+                  <Label layoutX="7.0" layoutY="448.0" text="Enroll Date:">
+                     <font>
+                        <Font name="Tahoma Bold" size="13.0" />
+                     </font>
+                  </Label>
+
+                  <Label layoutX="8.0" layoutY="394.0" text="Date of Birth:">
+                     <font>
+                        <Font name="Tahoma Bold" size="13.0" />
+                     </font>
+                  </Label>
+
+                  <Line endX="102.4" layoutX="158.0" layoutY="47.0" startX="-140.0" />
+
+                  <DatePicker fx:id="dobPicker2" layoutX="102.0" layoutY="387.0" prefHeight="30.0" prefWidth="167.0" promptText="dob" />
+                  <DatePicker fx:id="enrollDatePicker2" layoutX="100.0" layoutY="444.0" prefHeight="30.0" prefWidth="167.0" promptText="enroll" />
+
+                  <Button fx:id="createStudent2" layoutX="45.0" layoutY="552.0" mnemonicParsing="false" onAction="#createStudent2" prefHeight="38.0" prefWidth="76.0" styleClass="crudButton" stylesheets="@../css/createAccount.css" text="Create">
+                     <font>
+                        <Font name="Tahoma Bold" size="13.0" />
+                     </font>
+                  </Button>
+
+                  <Button fx:id="readStudent2" layoutX="157.0" layoutY="613.0" mnemonicParsing="false" onAction="#readStudent2" prefHeight="36.0" prefWidth="74.0" styleClass="crudButton" stylesheets="@../css/createAccount.css" text="Clear">
+                     <font>
+                        <Font name="Tahoma Bold" size="13.0" />
+                     </font>
+                  </Button>
+
+                  <Button fx:id="updateStudent2" layoutX="154.0" layoutY="552.0" mnemonicParsing="false" onAction="#updateStudent2" prefHeight="37.0" prefWidth="74.0" styleClass="crudButton" stylesheets="@../css/createAccount.css" text="Update">
+                     <font>
+                        <Font name="Tahoma Bold" size="13.0" />
+                     </font>
+                  </Button>
+
+                  <Button fx:id="deleteStudent2" layoutX="47.0" layoutY="613.0" mnemonicParsing="false" onAction="#deleteStudent2" prefHeight="38.0" prefWidth="76.0" styleClass="crudButton" stylesheets="@../css/createAccount.css" text="Delete">
+                     <font>
+                        <Font name="Tahoma Bold" size="13.0" />
+                     </font>
+                  </Button>
+               </AnchorPane>
+
+               <!-- Right Pane for TableView -->
+               <AnchorPane id="addStudentRightDashboard" layoutX="315.0" layoutY="8.0" prefHeight="679.0" prefWidth="707.0" style="-fx-background-color: white;">
+                  <TableView fx:id="studentTableView2" layoutX="10.0" layoutY="105.0" prefHeight="558.0" prefWidth="718.0">
+                     <columns>
+                        <TableColumn fx:id="studentIDColumn2" prefWidth="40.0" text="ID" />
+                        <TableColumn fx:id="firstNameColumn2" prefWidth="71.20001220703125" text="FirstName" />
+                        <TableColumn fx:id="lastNameColumn2" prefWidth="65.5999755859375" text="LastName" />
+                        <TableColumn fx:id="facultyColumn2" prefWidth="59.199920654296875" text="Faculty" />
+                        <TableColumn fx:id="emailColumn2" prefWidth="88.79998779296875" text="Email" />
+                        <TableColumn fx:id="genderColumn2" prefWidth="61.60003662109375" text="Gender" />
+                        <TableColumn fx:id="phoneNumberColumn2" prefWidth="74.4000244140625" text="Phone no." />
+                        <TableColumn fx:id="addressColumn2" prefWidth="104.7999267578125" text="Address" />
+                        <TableColumn fx:id="dobColumn2" minWidth="0.0" prefWidth="67.199951171875" text="DOB" />
+                        <TableColumn fx:id="enrollDateColumn2" prefWidth="92.0" text="EnrollDate" />
+                     </columns>
+                  </TableView>
+                  <HBox alignment="CENTER_RIGHT" layoutX="14.0" layoutY="36.0" prefHeight="51.0" prefWidth="710.0" style="-fx-background-color: #444444;" styleClass="search-fieldbyID" stylesheets="@../css/student_dashboard.css">
+                     <HBox alignment="CENTER_LEFT" prefHeight="20.0" prefWidth="436.0">
+                        <children>
+                           <Label prefHeight="22.0" prefWidth="140.0" style="-fx-text-fill: white;" text="Search Students">
+                              <font>
+                                 <Font size="19.0" />
+                              </font>
+                           </Label>
+                        </children>
+                     </HBox>
+                     <HBox alignment="CENTER" prefHeight="39.0" prefWidth="227.0" style="-fx-background-color: white;" styleClass="searcharea-fieldbyID" stylesheets="@../css/student_dashboard.css">
+                        <HBox.margin>
+                           <Insets left="15.0" />
+                        </HBox.margin>
+                        <ImageView fitHeight="34.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true">
+                           <HBox.margin>
+                              <Insets left="15.0" />
+                           </HBox.margin>
+                           <Image url="@../images/search.png" />
+                        </ImageView>
+                        <TextField fx:id="searchField2" onAction="#searchStudent2" prefHeight="27.0" prefWidth="170.0" promptText="search by ID" styleClass="searcharea-fieldbyID" stylesheets="@../css/student_dashboard.css">
+                           <HBox.margin>
+                              <Insets left="5.0" right="5.0" />
+                           </HBox.margin>
+                        </TextField>
+                     </HBox>
+                  </HBox>
+               </AnchorPane>
+            </AnchorPane>
+            <AnchorPane fx:id="viewStudentAdminDashboard" layoutX="38.0" layoutY="66.0" prefHeight="355.0" prefWidth="279.0" style="-fx-background-color: red;" visible="false" />
+         </AnchorPane>
+      </StackPane>
+   </center>
+</BorderPane>

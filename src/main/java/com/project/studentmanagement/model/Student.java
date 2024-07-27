@@ -2,10 +2,10 @@ package com.project.studentmanagement.model;
 
 import java.time.LocalDate;
 
-public class Student {
+public class Student extends Person {
     private int studentID;
-    private String firstName;
-    private String lastName;
+//    private String firstName;
+//    private String lastName;
     private String faculty;
     private String email;
     private String gender;
@@ -16,9 +16,10 @@ public class Student {
 
     // Constructors
     public Student(int studentID, String firstName, String lastName, String faculty, String email, String gender, String phoneNumber, String address, LocalDate dob, LocalDate enrollDate) {
+        super(firstName, lastName);
         this.studentID = studentID;
-        this.firstName = firstName;
-        this.lastName = lastName;
+//        this.firstName = firstName;
+//        this.lastName = lastName;
         this.faculty = faculty;
         this.email = email;
         this.gender = gender;
@@ -34,25 +35,25 @@ public class Student {
         return studentID;
     }
 
-    public void setStudentID(int studentID) {
-        this.studentID = studentID;
-    }
+//    public void setStudentID(int studentID) {
+//        this.studentID = studentID;
+//    }
 
-    public String getFirstName() {
-        return firstName;
-    }
+//    public String getFirstName() {
+//        return firstName;
+//    }
+//
+//    public void setFirstName(String firstName) {
+//        this.firstName = firstName;
+//    }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
+//    public String getLastName() {
+//        return lastName;
+//    }
+//
+//    public void setLastName(String lastName) {
+//        this.lastName = lastName;
+//    }
 
     public String getFaculty() {
         return faculty;
@@ -114,8 +115,8 @@ public class Student {
     public String toString() {
         return "Student{" +
                 "studentID=" + studentID +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
+                ", firstName='" + getFirstName() + '\'' +
+                ", lastName='" + getLastName() + '\'' +
                 ", faculty='" + faculty + '\'' +
                 ", email='" + email + '\'' +
                 ", gender='" + gender + '\'' +

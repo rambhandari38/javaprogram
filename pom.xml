@@ -6,9 +6,9 @@
 
     <!-- Project Coordinates -->
     <groupId>com.example</groupId>
-    <artifactId>Trainging5</artifactId>
+    <artifactId>APSM</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <name>Trainging5</name>
+    <name>studentmanagement</name>
 
     <!-- Properties -->
     <properties>
@@ -75,7 +75,7 @@
                             <goal>run</goal>
                         </goals>
                         <configuration>
-                            <mainClass>com.example.trainging5.HelloApplication</mainClass>
+                            <mainClass>com.example.studentmanagement.Main</mainClass>
                         </configuration>
                     </execution>
                 </executions>

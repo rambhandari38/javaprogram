@@ -14,6 +14,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import javafx.util.Callback;
 
 import java.io.File;
@@ -25,14 +26,27 @@ import java.util.List;
 import java.util.Optional;
 
 public class LibraryRecordsController {
-    @FXML
-    private BorderPane contentPane;
-    private Main mainApp;
-//    private User loggedInUser;
 
+    private Stage stage;
+
+    public void setStage(Stage stage) {
+        this.stage = stage;
+    }
+
+    @FXML
+    private void handleCloseButtonAction(ActionEvent event) {
+        // Get the current stage
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        // Close the stage
+        stage.close();
+    }
+
+    private Main mainApp;
     public void setMainApp(Main mainApp) {
         this.mainApp = mainApp;
     }
+    @FXML
+    private BorderPane contentPane;
 
     @FXML
     private TextField bookTitle, borrowerName, returnBookName, returnName;
@@ -95,7 +109,7 @@ public class LibraryRecordsController {
 
     private void loadFXML(String fxmlFile) {
         try {
-            FXMLLoader loader = new FXMLLoader(com.project.studentmanagement.Main.class.getResource(fxmlFile));
+            FXMLLoader loader = new FXMLLoader(Main.class.getResource(fxmlFile));
             Node node = loader.load();
             contentPane.getChildren().setAll(node);
         } catch (IOException e) {

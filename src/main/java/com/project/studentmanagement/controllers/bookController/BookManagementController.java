@@ -14,6 +14,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import javafx.util.Callback;
 
 import java.io.File;
@@ -25,15 +26,21 @@ import java.util.List;
 import java.util.Optional;
 
 public class BookManagementController {
+
+    private Stage stage;
+
+//    public void setStage(Stage stage) {
+//        this.stage = stage;
+//    }
+
+//    @FXML
+//    protected void handleCloseButtonAction() {
+//        if (stage != null) {
+//            stage.close();
+//        }
+//    }
     @FXML
     private BorderPane contentPane;
-
-    private Main mainApp;
-//    private User loggedInUser;
-
-    public void setMainApp(Main mainApp) {
-        this.mainApp = mainApp;
-    }
 
     @FXML
     private Label bookAddedPrompt;
@@ -58,6 +65,31 @@ public class BookManagementController {
     private TableColumn<List<String>, String> actionColumn;
 
     String pathToCSV = "StudentManagementData/libraryData/bookData.csv";
+
+//    private Stage stage;
+
+    public void setStage(Stage stage) {
+        this.stage = stage;
+    }
+    private Main mainApp;
+    public void setMainApp(Main mainApp) {
+        this.mainApp = mainApp;
+    }
+
+    @FXML
+    protected void handleMinimizeButtonAction() {
+        if (stage != null) {
+            stage.setIconified(true);
+        }
+    }
+
+    @FXML
+    private void handleCloseButtonAction(ActionEvent event) {
+        // Get the current stage
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        // Close the stage
+        stage.close();
+    }
 
     public void initialize() {
         bookAddedDate.setValue(LocalDate.now());
@@ -97,7 +129,7 @@ public class BookManagementController {
 
     private void loadFXML(String fxmlFile) {
         try {
-            FXMLLoader loader = new FXMLLoader(com.project.studentmanagement.Main.class.getResource(fxmlFile));
+            FXMLLoader loader = new FXMLLoader(Main.class.getResource(fxmlFile));
             Node node = loader.load();
             contentPane.getChildren().setAll(node);
         } catch (IOException e) {

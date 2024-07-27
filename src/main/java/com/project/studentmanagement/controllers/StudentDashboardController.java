@@ -3,13 +3,23 @@ package com.project.studentmanagement.controllers;
 import com.project.studentmanagement.Main;
 import com.project.studentmanagement.model.User;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 public class StudentDashboardController {
+
+    private Stage stage;
+
+    public void setStage(Stage stage) {
+        this.stage = stage;
+    }
+
+    @FXML
+    protected void handleCloseButtonAction() {
+        if (stage != null) {
+            stage.close();
+        }
+    }
 
     @FXML
     private Label welcomeLabel;

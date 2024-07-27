@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.project.studentmanagement.controllers.studentController.StudentProblemFormController">
+
+    <center>
+        <VBox alignment="CENTER" spacing="20" style="-fx-padding: 50px;">
+            <Label text="Student Problem Form" style="-fx-font-size: 24px; -fx-font-family: 'Times New Roman';"/>
+            <VBox spacing="10" style="-fx-background-color: #f8f8f8; -fx-padding: 20px; -fx-border-color: lightgrey; -fx-border-radius: 5px; -fx-background-radius: 5px;">
+                <Label text="Student Problem Form" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-padding: 0 0 10px 0;"/>
+                <GridPane hgap="10" vgap="10">
+                    <Label text="Problem ID:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                    <TextField fx:id="problemIdField" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+                    <Label text="Title:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                    <TextField fx:id="titleField" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+                    <Label text="SC ID:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                    <TextField fx:id="scIdField" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+                    <Label text="Creator Name:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+                    <TextField fx:id="creatorNameField" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+                </GridPane>
+                <HBox spacing="10" alignment="CENTER">
+                    <Button fx:id="submitButton" text="Submit" onAction="#handleSubmit" style="-fx-background-color: #28a745; -fx-text-fill: white;"/>
+                    <Button fx:id="viewButton" text="View" onAction="#handleView" style="-fx-background-color: #ffc107; -fx-text-fill: white;"/>
+                    <Button fx:id="deleteButton" text="Delete" onAction="#handleDelete" style="-fx-background-color: #dc3545; -fx-text-fill: white;"/>
+                </HBox>
+            </VBox>
+        </VBox>
+    </center>
+</BorderPane>

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox alignment="TOP_CENTER" prefHeight="815.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.project.studentmanagement.controllers.teacherController.TeacherDashboardController">
+   <children>
+      <HBox alignment="TOP_CENTER" prefHeight="90.0" prefWidth="1250.0" spacing="20" style="-fx-background-color: #444444;">
+         <children>
+            <Label prefHeight="46.0" prefWidth="236.0" style="-fx-font-size: 27px; -fx-text-fill: white;" text="Teacher Dashboard" />
+            <HBox alignment="CENTER_RIGHT" spacing="10" />
+            <HBox alignment="CENTER_RIGHT" prefHeight="50.0" prefWidth="935.0">
+               <children>
+                  <Button onAction="#handleCloseButtonAction" mnemonicParsing="false" prefHeight="30.0" prefWidth="54.0" text="close">
+                     <HBox.margin>
+                        <Insets right="15.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
+         </children>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+      </HBox>
+      <HBox prefHeight="765.0" prefWidth="1220.0" spacing="20">
+         <children>
+            <VBox alignment="TOP_CENTER" prefHeight="759.0" prefWidth="220.0" spacing="10" style="-fx-background-color: #444444;" styleClass="sidebarcss" stylesheets="@../../css/student_dashboard.css">
+               <children>
+                  <Button fx:id="overviewButton" mnemonicParsing="false" onAction="#handleOverviewButtonAction" prefHeight="35.0" prefWidth="158.0" styleClass="avsButton" stylesheets="@../../css/student_dashboard.css" text="Overview">
+                     <VBox.margin>
+                        <Insets top="11.0" />
+                     </VBox.margin></Button>
+                  <Button fx:id="courseScheduleButton" mnemonicParsing="false" onAction="#handleCourseScheduleButtonAction" prefHeight="35.0" prefWidth="158.0" styleClass="avsButton" stylesheets="@../../css/student_dashboard.css" text="Course Schedule">
+                     <VBox.margin>
+                        <Insets top="11.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font name="Tahoma" size="12.0" />
+                     </font></Button>
+                  <Button fx:id="gradeAssignmentsButton" mnemonicParsing="false" onAction="#handleGradesAssignmentsButtonAction" prefHeight="35.0" prefWidth="158.0" styleClass="avsButton" stylesheets="@../../css/student_dashboard.css" text="Grade Assignments">
+                     <VBox.margin>
+                        <Insets top="11.0" />
+                     </VBox.margin></Button>
+                  <Button fx:id="createAssignmentButton" mnemonicParsing="false" onAction="#handleCreateAssignmentButtonAction" prefHeight="35.0" prefWidth="158.0" styleClass="avsButton" stylesheets="@../../css/student_dashboard.css" text="Create Assignment">
+                     <VBox.margin>
+                        <Insets top="11.0" />
+                     </VBox.margin></Button>
+                  <Button fx:id="announcementButton" mnemonicParsing="false" prefHeight="35.0" prefWidth="159.0" styleClass="avsButton" stylesheets="@../../css/student_dashboard.css" text="Announcement">
+                     <VBox.margin>
+                        <Insets top="11.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font name="Tahoma" size="12.0" />
+                     </font></Button>
+               </children>
+               <padding>
+                  <Insets bottom="20" left="20" right="20" top="20" />
+               </padding>
+            </VBox>
+            <VBox alignment="TOP_CENTER" prefHeight="746.0" prefWidth="1010.0" spacing="10">
+               <children>
+                  <Label fx:id="announcementDashboardLabel" prefHeight="50.0" prefWidth="266.0" text="Announcement Dashboard">
+                     <font>
+                        <Font name="System Bold" size="21.0" />
+                     </font></Label>
+                  <VBox prefHeight="93.0" prefWidth="989.0" style="-fx-background-color: #FFFFFF;">
+                     <children>
+                        <Label fx:id="importantNoticeLabel" text="Important Notice" />
+                        <Label text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam condimentum dictum." />
+                        <Label text="Posted on: 2024-07-06" />
+                     </children>
+                     <padding>
+                        <Insets bottom="10" left="10" right="10" top="10" />
+                     </padding>
+                     <VBox.margin>
+                        <Insets top="45.0" />
+                     </VBox.margin>
+                  </VBox>
+                  <VBox prefHeight="98.0" prefWidth="991.0" style="-fx-background-color: #FFFFFF;">
+                     <children>
+                        <Label fx:id="libraryClosureLabel" text="Library Closure" />
+                        <Label text="Donec id condimentum velit, non fringilla odio. Sed luctus ante vitae est." />
+                        <Label text="Posted on: 2024-07-04" />
+                     </children>
+                     <padding>
+                        <Insets bottom="10" left="10" right="10" top="10" />
+                     </padding>
+                     <VBox.margin>
+                        <Insets top="45.0" />
+                     </VBox.margin>
+                  </VBox>
+                  <VBox prefHeight="111.0" prefWidth="991.0" style="-fx-background-color: #FFFFFF;">
+                     <children>
+                        <Label fx:id="examScheduleUpdateLabel" text="Exam Schedule Update" />
+                        <Label text="Phasellus eleifend, mi eget finibus ullamcorper, lorem tortor gravida velit." />
+                        <Label text="Posted on: 2024-07-05" />
+                     </children>
+                     <padding>
+                        <Insets bottom="10" left="10" right="10" top="10" />
+                     </padding>
+                     <VBox.margin>
+                        <Insets top="45.0" />
+                     </VBox.margin>
+                  </VBox>
+               </children>
+               <padding>
+                  <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+               </padding>
+            </VBox>
+         </children>
+      </HBox>
+   </children>
+</VBox>
